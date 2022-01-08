@@ -54,7 +54,7 @@ def host_ping(lst_ip, print_is_reach=False):
 
 def ping(ip, t_dict, print_is_reach=False):
     param = '-n' if platform.system().lower() == 'windows' else '-c'
-    reply = Popen(['ping', param, '2', ip], stdout=PIPE, stderr=PIPE)
+    reply = Popen(['ping', param, '2', '-w', '10', ip], stdout=PIPE, stderr=PIPE)
     if reply.wait() == 0:
         if print_is_reach:
             print(f'Узел доступен {ip}')

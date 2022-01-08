@@ -44,7 +44,7 @@ def host_ping(lst_ip, print_is_reach=False):
             print(f'{addr} - {e}: доменное имя')
             ip = addr
         finally:
-            args = ['ping', param, '2', ip]
+            args = ['ping', param, '2', '-w', '1', ip]
             reply = Popen(args, stdout=PIPE, stderr=PIPE)
             if reply.wait() == 0:
                 if print_is_reach:
