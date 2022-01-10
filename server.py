@@ -13,16 +13,17 @@ import json
 from errors import *
 from decos import log
 from common.utils import recieve_msg, send_msg
-from socket import AF_INET, SOCK_STREAM, socket
+import socket
+from metaclasses import ServerVerifier
 
 
 # cсылка на созданный логгер:
 SERVER_LOGGER = logging.getLogger('server')
 
 
-class ServSock:
+class ServSock(metaclass=ServerVerifier):
     def __init__(self):
-        self.sock = socket(AF_INET, SOCK_STREAM)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_address = None
         self.listen_port = None
 
@@ -71,7 +72,7 @@ class ServSock:
         self.listen_address, self.listen_port = self.cmd_arg_parse()
         self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         self.sock.bind((self.listen_address, self.listen_port))
-        self.sock.settimeout(10)
+        self.sock.settimeout(1)  # будет ждать подключений указанное время
         self.sock.listen(MAX_CONNECTION)
         SERVER_LOGGER.debug('Сервер в ожидании клиента')
 
@@ -166,7 +167,6 @@ class ServSock:
 
 
 server = ServSock()
-# server.settimeout(10)  # будет ждать подключений указанное время
 
 
 if __name__ == '__main__':

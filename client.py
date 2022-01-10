@@ -11,7 +11,7 @@ import logging
 import logs.client_log_config
 from errors import *
 from decos import log
-from socket import AF_INET, SOCK_STREAM, socket
+import socket
 from common.utils import recieve_msg, send_msg
 from metaclasses import ClientVerifier
 
@@ -20,7 +20,7 @@ CLIENT_LOGGER = logging.getLogger('client')
 
 class ClientSock(metaclass=ClientVerifier):
     def __init__(self):
-        self.sock = socket(AF_INET, SOCK_STREAM)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_address = None
         self.server_port = None
         self.client_name = None
@@ -46,7 +46,7 @@ class ClientSock(metaclass=ClientVerifier):
         """
         while True:
             try:
-                message = recieve_msg(self.sock)                                           # здесь super() можно заменить на self ?
+                message = recieve_msg(self.sock)
                 if ACTION in message and SENDER in message \
                     and DESTINATION in message and MESSAGE_TEXT in message \
                         and message[ACTION] == MESSAGE and message[DESTINATION] == user_name:
@@ -56,7 +56,7 @@ class ClientSock(metaclass=ClientVerifier):
                                        f'{message[MESSAGE_TEXT]}')
                 else:
                     CLIENT_LOGGER.error(f'От сервера получено некорректное сообщение {message}:')
-            except IncorrectDataRecievedError:                                                     # почему на некорректных данных не прервались ?
+            except IncorrectDataRecievedError:                              # почему на некорректных данных не прервались ?
                 CLIENT_LOGGER.error(f'Не удалось декодировать полученное сообщение')
             except (OSError, ConnectionAbortedError, ConnectionError,
                     ConnectionResetError, json.JSONDecodeError):
@@ -170,8 +170,6 @@ class ClientSock(metaclass=ClientVerifier):
             CLIENT_LOGGER.critical(f'Попытка запуска клиента с указанием порта: {server_port}. '
                                    f'Адрес порта должен быть в диапазоне от 1024 до 65535')
             sys.exit(1)
-        # CLIENT_LOGGER.info(f'Клиент {client_name} запущен с параметрами: адрес сервера: {server_address}, '
-        #                    f'порт сервера: {server_port}.')
         return server_address, server_port, client_name
 
     @log

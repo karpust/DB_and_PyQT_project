@@ -24,7 +24,8 @@ class ClientVerifier(type):
         # clsname - экземпляр метакласса - Server
         # bases - кортеж базовых классов - ()
         # clsdict - словарь атрибутов и методов экземпляра метакласса
-        absente_methods = ('accept', 'listen')
+        absent_methods = ('accept', 'listen')
+        must_attr = ('AF_INET', 'SOCK_STREAM')
         methods = []
         attrs = []
         for func in clsdict:
@@ -37,8 +38,10 @@ class ClientVerifier(type):
             else:
                 for i in ret_val:
                     # opname - имя для операции
+                    if i.argval == 'connect':
+                        print(f'connect in {i.opname}')
                     # если это метод:
-                    if i.opname == 'LOAD_GLOBAL':
+                    if i.opname == 'LOAD_METHOD':
                         if i.argval not in methods:
                             # заполняем список методами класса
                             methods.append(i.argval)
@@ -47,13 +50,56 @@ class ClientVerifier(type):
                         if i.argval not in attrs:
                             # заполняем список атрибутами класса
                             attrs.append(i.argval)
-        for command in ('accept', 'listen'):
+        for command in absent_methods:
             if command in methods:
                 raise TypeError(f'There must be no such attribute in the class: '
-                                f'{command}')
-        # if 'SOCK_STREAM' not in attrs:
-        #     raise TypeError(f'Socket is not correctly initialized: '
-        #                     f'{attrs}')
+                                f'{absent_methods}')
+        for attr in must_attr:
+            if attr not in attrs:
+                raise TypeError(f'Socket is not correctly initialized: '
+                                f'{attrs}')
+        print(f'methods: {methods}')
+        print('==============================')
+        print(f'attrs: {attrs}')
+        # вызываем конструктор предка:
+        super().__init__(clsname, bases, clsdict)
+
+
+class ServerVerifier(type):
+    def __init__(cls, clsname, bases, clsdict ):
+        absent_method = 'connect'
+        must_attr = ('AF_INET', 'SOCK_STREAM')
+        methods = []
+        attrs = []
+        for func in clsdict:
+            try:
+                ret_val = dis.get_instructions(clsdict[func])
+            # если это не функция(порт):
+            except TypeError:
+                pass
+            # если это функция:
+            else:
+                for i in ret_val:
+                    # opname - имя для операции
+                    if i.argval in ('accept', 'listen'):
+                        print(f'accept and listen in {i.opname}')
+                    # если это метод:
+                    if i.opname == 'LOAD_METHOD':
+                        if i.argval not in methods:
+                            # заполняем список методами класса
+                            methods.append(i.argval)
+                    # если это атрибут:
+                    elif i.opname == 'LOAD_ATTR':
+                        if i.argval not in attrs:
+                            # заполняем список атрибутами класса
+                            attrs.append(i.argval)
+        if absent_method in methods:
+            raise TypeError(f'There must be no such attribute in the class: '
+                            f'{absent_method}')
+        for attr in must_attr:
+            if attr not in attrs:
+                raise TypeError(f'Socket is not correctly initialized: '
+                                f'{attrs}')
         print(f'methods: {methods}')
         print('==============================')
         print(f'attrs: {attrs}')
