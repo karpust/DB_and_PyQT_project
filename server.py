@@ -6,22 +6,23 @@ from select import select
 from common.variables import ACTION, TIME, USER, PRESENCE, ACCOUNT_NAME, RESPONSE, ERROR, \
     MAX_CONNECTION, PORT_DEFAULT, SERVER_ADDRESS_DEFAULT, MESSAGE, MESSAGE_TEXT, SENDER, \
     DESTINATION, EXIT, RESPONSE_200, RESPONSE_400
-from common.utils import Sock
 from socket import SOL_SOCKET, SO_REUSEADDR
 import logging
 import logs.server_log_config
 import json
 from errors import *
 from decos import log
+from common.utils import recieve_msg, send_msg
+from socket import AF_INET, SOCK_STREAM, socket
 
 
 # cсылка на созданный логгер:
 SERVER_LOGGER = logging.getLogger('server')
 
 
-class ServSock(Sock):
-    def __init__(self, family=-1, type=-1):
-        super().__init__(family, type)
+class ServSock:
+    def __init__(self):
+        self.sock = socket(AF_INET, SOCK_STREAM)
         self.listen_address = None
         self.listen_port = None
 
@@ -40,11 +41,11 @@ class ServSock(Sock):
             # регистрируем иначе ошибка:
             if message[USER][ACCOUNT_NAME] not in names.keys():
                 names[message[USER][ACCOUNT_NAME]] = client
-                super().send_msg(client, RESPONSE_200)
+                send_msg(client, RESPONSE_200)
             else:
                 response = RESPONSE_400
                 response[ERROR] = 'Имя пользователя уже занято.'
-                super().send_msg(client, response)
+                send_msg(client, response)
                 client.remove(client)
                 client.close()
             return
@@ -62,15 +63,16 @@ class ServSock(Sock):
         else:
             response = RESPONSE_400
             response[ERROR] = 'запрос не корректен'
-            super().send_msg(client, response)
+            send_msg(client, response)
             return
 
     @log
     def server_connect(self):  # сервер, клиент
         self.listen_address, self.listen_port = self.cmd_arg_parse()
-        self.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-        self.bind((self.listen_address, self.listen_port))
-        self.listen(MAX_CONNECTION)
+        self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+        self.sock.bind((self.listen_address, self.listen_port))
+        self.sock.settimeout(10)
+        self.sock.listen(MAX_CONNECTION)
         SERVER_LOGGER.debug('Сервер в ожидании клиента')
 
         clients = []  # список клиентов
@@ -79,7 +81,7 @@ class ServSock(Sock):
 
         while True:  # ждем подключения клиента, если подключится - добавим в список клиентов
             try:
-                client, client_addr = self.accept()
+                client, client_addr = self.sock.accept()
             except OSError:  # если таймаут вышел, ловим исключение
                 pass
             else:
@@ -103,7 +105,7 @@ class ServSock(Sock):
             if recv_data_lst:
                 for client_with_msg in recv_data_lst:
                     try:
-                        self.check_msg(super().recieve_msg(client_with_msg), messages, client_with_msg, clients, names)
+                        self.check_msg(recieve_msg(client_with_msg), messages, client_with_msg, clients, names)
                     except Exception:
                         SERVER_LOGGER.info(f'Клиент {client_with_msg.getpeername()} '
                                            f'отключен от сервера.')
@@ -127,7 +129,7 @@ class ServSock(Sock):
         и слушающие сокеты. Ничего не возвращает.
         """
         if message[DESTINATION] in names and names[message[DESTINATION]] in listen_socks:
-            super().send_msg(names[message[DESTINATION]], message)
+            send_msg(names[message[DESTINATION]], message)
             SERVER_LOGGER.info(f'Отправлено сообщение пользователю {message[DESTINATION]} '
                                f'от пользователя {message[SENDER]}')
         elif message[DESTINATION] in names and names[message[DESTINATION]] not in listen_socks:
@@ -164,7 +166,7 @@ class ServSock(Sock):
 
 
 server = ServSock()
-server.settimeout(10)  # будет ждать подключений указанное время
+# server.settimeout(10)  # будет ждать подключений указанное время
 
 
 if __name__ == '__main__':

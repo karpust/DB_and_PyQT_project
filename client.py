@@ -7,18 +7,20 @@ from common.variables import ACTION, PRESENCE, TIME, TYPE, STATUS, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, CLIENT_ADDRESS_DEFAULT, PORT_DEFAULT, \
     MESSAGE, MESSAGE_TEXT, SENDER, EXIT, DESTINATION
 from ipaddress import ip_address
-from common.utils import Sock
 import logging
 import logs.client_log_config
 from errors import *
 from decos import log
+from socket import AF_INET, SOCK_STREAM, socket
+from common.utils import recieve_msg, send_msg
+from metaclasses import ClientVerifier
 
 CLIENT_LOGGER = logging.getLogger('client')
 
 
-class ClientSock(Sock):
-    def __init__(self, family=-1, type=-1):
-        super().__init__(family, type)
+class ClientSock(metaclass=ClientVerifier):
+    def __init__(self):
+        self.sock = socket(AF_INET, SOCK_STREAM)
         self.server_address = None
         self.server_port = None
         self.client_name = None
@@ -44,7 +46,7 @@ class ClientSock(Sock):
         """
         while True:
             try:
-                message = super().recieve_msg(self)                                           # здесь super() можно заменить на self ?
+                message = recieve_msg(self.sock)                                           # здесь super() можно заменить на self ?
                 if ACTION in message and SENDER in message \
                     and DESTINATION in message and MESSAGE_TEXT in message \
                         and message[ACTION] == MESSAGE and message[DESTINATION] == user_name:
@@ -79,7 +81,7 @@ class ClientSock(Sock):
         }
         CLIENT_LOGGER.debug(f'Сформирован словарь сообщения {message}')
         try:
-            super().send_msg(self, message)              # что это за сокет, откуда или кому ?  это сокет клиента
+            send_msg(self.sock, message)              # что это за сокет, откуда или кому ?  это сокет клиента
             CLIENT_LOGGER.info(f'Отправлено сообщение для пользователя {to_user}')
         except:
             CLIENT_LOGGER.critical('Потеряно соединение с сервером')
@@ -99,7 +101,7 @@ class ClientSock(Sock):
                 self.output_help()
             elif command == 'exit':
                 print('Завершение работы')
-                super().send_msg(self, self.create_exit_msg(user_name))
+                send_msg(self.sock, self.create_exit_msg(user_name))
                 CLIENT_LOGGER.info(f'Пользователь {user_name} завершил работу')
                 time.sleep(0.5)  # задержка чтобы успело уйти сообщение
                 break
@@ -186,10 +188,10 @@ class ClientSock(Sock):
         
         # соединение с сервером:
         try:
-            self.connect((self.server_address, self.server_port))
+            self.sock.connect((self.server_address, self.server_port))
             client_msg = self.create_presence_msg(self.client_name)
-            super().send_msg(self, client_msg)
-            server_msg = super().recieve_msg(self)
+            send_msg(self.sock, client_msg)
+            server_msg = recieve_msg(self.sock)
             server_ans = self.check_server_msg(server_msg)
             CLIENT_LOGGER.info(f'Установлено соединение с сервером, ответ сервера: {server_ans}')
         except FieldMissingError as missing_err:

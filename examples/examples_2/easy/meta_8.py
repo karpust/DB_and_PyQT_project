@@ -27,6 +27,7 @@ class ControlAttrName(type):
 
 class Foo(metaclass=ControlAttrName):
     x = 5
+    # y = 5
 
 
 foo = Foo()
