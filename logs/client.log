@@ -52,3 +52,4 @@
 2022-01-09 19:51:56,188 - INFO     - client - Получено сообщение от пользователя client1: dfvsdfvsdfvdsfvdvdvdf
 2022-01-09 19:51:56,191 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 50839), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции self._bootstrap_inner() 
 2022-01-09 19:51:56,192 - INFO     - client - Получено сообщение от пользователя client1: fasdfsdfgffffffffffffffffffffffffffffffffffffffffffffffffff
+2022-01-09 19:53:10,186 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (<__main__.ClientSock object at 0x000001C9425095E0>,), {}. Функция cmd_arg_parse вызывается из функции client.client_connect() 
