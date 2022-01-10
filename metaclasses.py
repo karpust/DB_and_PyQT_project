@@ -38,8 +38,6 @@ class ClientVerifier(type):
             else:
                 for i in ret_val:
                     # opname - имя для операции
-                    if i.argval == 'connect':
-                        print(f'connect in {i.opname}')
                     # если это метод:
                     if i.opname == 'LOAD_METHOD':
                         if i.argval not in methods:
@@ -58,9 +56,9 @@ class ClientVerifier(type):
             if attr not in attrs:
                 raise TypeError(f'Socket is not correctly initialized: '
                                 f'{attrs}')
-        print(f'methods: {methods}')
-        print('==============================')
-        print(f'attrs: {attrs}')
+        # print(f'methods: {methods}')
+        # print('==============================')
+        # print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 
@@ -81,8 +79,6 @@ class ServerVerifier(type):
             else:
                 for i in ret_val:
                     # opname - имя для операции
-                    if i.argval in ('accept', 'listen'):
-                        print(f'accept and listen in {i.opname}')
                     # если это метод:
                     if i.opname == 'LOAD_METHOD':
                         if i.argval not in methods:
@@ -100,9 +96,9 @@ class ServerVerifier(type):
             if attr not in attrs:
                 raise TypeError(f'Socket is not correctly initialized: '
                                 f'{attrs}')
-        print(f'methods: {methods}')
-        print('==============================')
-        print(f'attrs: {attrs}')
+        # print(f'methods: {methods}')
+        # print('==============================')
+        # print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 
