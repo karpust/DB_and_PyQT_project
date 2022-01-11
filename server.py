@@ -36,10 +36,7 @@ def cmd_arg_parse():
     namespace = parser.parse_args(sys.argv[1:])  # все кроме имени скрипта
     listen_address = namespace.a
     listen_port = namespace.p
-    if listen_port < 1024 or listen_port > 65535:
-        SERVER_LOGGER.critical(f'Попытка запуска сервера с указанием порта {listen_port}. '
-                               f'Адрес порта должен быть в диапазоне от 1024 до 65535')
-        sys.exit(1)
+
     if listen_address != '':
         try:
             ip_address(listen_address)
