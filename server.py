@@ -23,6 +23,7 @@ SERVER_LOGGER = logging.getLogger('server')
 
 
 class ServSock(metaclass=ServerVerifier):
+    # port = Port()
     def __init__(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listen_address = None
