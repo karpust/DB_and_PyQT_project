@@ -56,9 +56,9 @@ class ClientVerifier(type):
             if attr not in attrs:
                 raise TypeError(f'Socket is not correctly initialized: '
                                 f'{attrs}')
-        # print(f'methods: {methods}')
-        # print('==============================')
-        # print(f'attrs: {attrs}')
+        print(f'methods: {methods}')
+        print('==============================')
+        print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 
@@ -96,9 +96,9 @@ class ServerVerifier(type):
             if attr not in attrs:
                 raise TypeError(f'Socket is not correctly initialized: '
                                 f'{attrs}')
-        # print(f'methods: {methods}')
-        # print('==============================')
-        # print(f'attrs: {attrs}')
+        print(f'methods: {methods}')
+        print('==============================')
+        print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 

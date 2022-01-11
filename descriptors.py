@@ -15,7 +15,7 @@ LOGGER = logging.getLogger('server')
 class Port:
     def __set__(self, instance, value):
         # value - адрес порта
-        print('Дескриптор порта пройден')
+        # print('Зашел в дескриптор порта.')
         if not 1023 < value < 65536:
             LOGGER.critical(
                 f'Попытка запуска сервера с указанием неподходящего порта {value}. '

@@ -150,6 +150,9 @@ class ClientSock(metaclass=ClientVerifier):
 
     @log
     def cmd_arg_parse(self):  # sys.argv = ['client.py', '127.0.0.1', 8888]
+        """
+        Парсер аргументов коммандной строки
+        """
         parser = argparse.ArgumentParser()  # создаем объект парсер
         parser.add_argument('addr', default='127.0.0.1', nargs='?')  # описываем позиционные аргументы
         parser.add_argument('port', default=7777, type=int, nargs='?')
