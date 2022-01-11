@@ -15,6 +15,7 @@ from decos import log
 from common.utils import recieve_msg, send_msg
 import socket
 from metaclasses import ServerVerifier
+from descriptors import Port
 
 
 # cсылка на созданный логгер:
