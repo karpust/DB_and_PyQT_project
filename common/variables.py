@@ -1,5 +1,7 @@
 """константы"""
 
+import logging
+
 # константы для сокетов:
 SERVER_ADDRESS_DEFAULT = ''
 CLIENT_ADDRESS_DEFAULT = 'localhost'
@@ -26,3 +28,8 @@ DESTINATION = 'to'
 EXIT = 'exit'
 RESPONSE_400 = {RESPONSE: 400, ERROR: 'Bad request'}
 RESPONSE_200 = {RESPONSE: 200}
+
+# База данных для хранения данных сервера:
+SERVER_DATABASE = 'sqlite:///server_base.db3'
+# Текущий уровень логирования
+LOGGING_LEVEL = logging.DEBUG
