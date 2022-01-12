@@ -53,7 +53,7 @@ class ServerDb:
             self.port = user_port
             self.login_time = user_login_time  # когда залогинился или время актив?
 
-    # создание движка базы данных:
+    # ----------------------создание движка базы данных:--------------------------
     def __init__(self):
         # Создаём движок базы данных:
         self.database_engine = create_engine(SERVER_DATABASE, echo=False, pool_recycle=7200)
@@ -63,7 +63,7 @@ class ServerDb:
         # соединения через каждые 2 часа)
 
         self.metadata = MetaData()  # что конкретно?
-        # создание таблиц
+        # ------------------------подготовка создания таблиц-------------------------
         # всех пользователей:
         users_table = Table('Users', self.metadata,
                             Column('id', Integer, primary_key=True),
@@ -89,18 +89,25 @@ class ServerDb:
                                    Column('login_time', DateTime)
                                    )
 
-        # создаем таблицы:
+        # -------------------создание таблиц:------------------------
         self.metadata.create_all(self.database_engine)
 
-        # создаем отображения:
+        # создание отображения:
         # связываем данные и таблицы:
         mapper(self.User, users_table)
         mapper(self.UserHistory, users_history_table)
         mapper(self.ActivUser, active_users_table)
 
-        # создаем сессию:
+        # создание сессии:
         Session = sessionmaker(bind=self.database_engine)
         self.session = Session()
+
+        # при установке соединений очищаем таблицу активных пользователей:
+        self.session.query(self.ActivUser).delete()
+        self.session.commit()
+
+    # функции: фикс вход, фикс выход, список активных, история входов
+    # Функция возвращает список известных пользователей со временем последнего входа.
 
 
 
