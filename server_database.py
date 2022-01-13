@@ -47,11 +47,12 @@ class ServerDb:
 
     class ActivUser:
         # всех активных пользователей:
-        def __init__(self, user_ip, user_port, user_login_time):
-            self.id = None
+        def __init__(self, user_id, user_ip, user_port, user_login_time):
+            self.user = user_id
             self.ip = user_ip
             self.port = user_port
             self.login_time = user_login_time  # когда залогинился или время актив?
+            self.id = None
 
     # ----------------------создание движка базы данных:--------------------------
     def __init__(self):
@@ -74,7 +75,7 @@ class ServerDb:
         # историй всех пользователей:
         users_history_table = Table('Login_history', self.metadata,
                                     Column('id', Integer, primary_key=True),
-                                    Column('name', ForeignKey('Users.id'), unique=True),
+                                    Column('user', ForeignKey('Users.id'), unique=True),
                                     Column('login_time', DateTime),
                                     Column('ip_address', String),
                                     Column('port', Integer)
@@ -107,7 +108,34 @@ class ServerDb:
         self.session.commit()
 
     # функции: фикс вход, фикс выход, список активных, история входов
-    # Функция возвращает список известных пользователей со временем последнего входа.
+    # Функция возвращает список известных пользователей
+    # со временем последнего входа.
+
+    def user_login(self, username, ip_address, port):
+        # ищем в таблице пользователя с именем user_name
+        user = self.session.query(self.User).filter_by(name=username)
+        # если такой пользователь есть:
+        if user.count():
+            user = user.first()
+            # обновляем время последнего логина
+            user.last_login = datetime.datetime.now()
+        else:
+            # создаем юзера (во время его первого логина):
+            user = self.User(username)
+            self.session.add(user)
+            # чтобы присвоить новому юзеру id:
+            self.session.commit()
+        # запись в таблицу активных юзеров о входе:
+        new_user = self.ActivUser(user.id, ip_address, port, datetime.datetime.now())
+        self.session.add(new_user)
+        # сохранить вход в таблице истории:
+        history = self.UserHistory(user.id, datetime.datetime.now(), ip_address, port)
+        self.session.add(history)
+        # сохранить изменения:
+        self.session.commit()
 
 
-
+if __name__ == '__main__':
+    db_1 = ServerDb()
+    db_1.user_login('Vasiliy', '192.168.1.1', 7771)
+    db_1.user_login('Petia', '192.168.1.2', 8888)
