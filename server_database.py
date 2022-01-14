@@ -165,11 +165,14 @@ class ServerDb:
         users = self.session.query(self.User.name, self.User.last_login)
         return users.all()
 
-    def all_history(self):
+    def all_history(self, username=None):
         users = self.session.query(self.User.name,
                                    self.UserHistory.login_time,
                                    self.UserHistory.ip_address,
                                    self.UserHistory.port,).join(self.User)
+        if username:
+            # история для конкретного пользователя:
+            users = users.filter(self.User.name == username)
         return users.all()
 
 
@@ -177,8 +180,10 @@ if __name__ == '__main__':
     db_1 = ServerDb()
     db_1.user_login('Vasiliy', '192.168.1.1', 7777)
     db_1.user_login('Petia', '192.168.1.2',  8886)
-    # print(db_1.ActivUser)
+    print(db_1.active_users_list())
     db_1.user_logout('Petia')
     print(db_1.active_users_list())
     print(db_1.all_users_list())
     print(db_1.all_history())
+    print(db_1.all_history('Vasiliy'))
+

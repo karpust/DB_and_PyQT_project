@@ -1,6 +1,5 @@
 import argparse
 import sys
-import time
 from ipaddress import ip_address
 from select import select
 from common.variables import *
@@ -143,6 +142,8 @@ class ServSock(Thread, metaclass=ServerVerifier):
             # регистрируем иначе ошибка:
             if message[USER][ACCOUNT_NAME] not in self.names.keys():
                 self.names[message[USER][ACCOUNT_NAME]] = client
+                client_ip, client_port = client.getpeername()
+                self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 send_msg(client, RESPONSE_200)
             else:
                 response = RESPONSE_400
@@ -158,6 +159,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
             return
         # если клиент выходит:
         elif ACTION in message and ACCOUNT_NAME in message and message[ACTION] == EXIT:
+            self.database.user_logout(message[ACCOUNT_NAME])
             self.clients.remove(self.names[message[ACCOUNT_NAME]])
             self.names[message[ACCOUNT_NAME]].close()
             del self.names[message[ACCOUNT_NAME]]
