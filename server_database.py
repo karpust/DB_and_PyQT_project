@@ -32,27 +32,27 @@ class ServerDb:
     class User:
         # всех пользователей:
         def __init__(self, user_name):
-            self.id = None
             self.name = user_name
             self.last_login = datetime.datetime.now()
-
-    class UserHistory:
-        # историй всех пользователей:
-        def __init__(self, user_id, login_date, user_ip, user_port):
-            self.user = user_id
-            self.date = login_date
-            self.ip = user_ip
-            self.port = user_port
-            self.id = None  # зачем тут юзер ид?
+            self.id = None
 
     class ActivUser:
         # всех активных пользователей:
-        def __init__(self, user_id, user_ip, user_port, user_login_time):
+        def __init__(self, user_id, ip_address, port, login_time):
             self.user = user_id
+            self.ip_address = ip_address
+            self.port = port
+            self.login_time = login_time  # когда залогинился или время актив?
+            self.id = None
+
+    class UserHistory:
+        # историй всех пользователей:
+        def __init__(self, user, login_date, user_ip, user_port):
+            self.id = None
+            self.user = user
+            self.date = login_date
             self.ip = user_ip
             self.port = user_port
-            self.login_time = user_login_time  # когда залогинился или время актив?
-            self.id = None
 
     # ----------------------создание движка базы данных:--------------------------
     def __init__(self):
@@ -72,23 +72,23 @@ class ServerDb:
                             Column('last_login', DateTime)
                             )
 
-        # историй всех пользователей:
-        users_history_table = Table('Login_history', self.metadata,
-                                    Column('id', Integer, primary_key=True),
-                                    Column('user', ForeignKey('Users.id'), unique=True),
-                                    Column('login_time', DateTime),
-                                    Column('ip_address', String),
-                                    Column('port', Integer)
-                                    )
-
         # всех активных пользователей:
         active_users_table = Table('Active_users', self.metadata,
                                    Column('id', Integer, primary_key=True),
-                                   Column('name', ForeignKey('Users.id'), unique=True),
+                                   Column('user', ForeignKey('Users.id'), unique=True),
                                    Column('ip_address', String),
                                    Column('port', Integer),
                                    Column('login_time', DateTime)
                                    )
+
+        # историй всех пользователей:
+        users_history_table = Table('Login_history', self.metadata,
+                                    Column('id', Integer, primary_key=True),
+                                    Column('user', ForeignKey('Users.id')),  # не unique=True
+                                    Column('login_time', DateTime),
+                                    Column('ip_address', String),
+                                    Column('port', String)
+                                    )
 
         # -------------------создание таблиц:------------------------
         self.metadata.create_all(self.database_engine)
@@ -96,8 +96,8 @@ class ServerDb:
         # создание отображения:
         # связываем данные и таблицы:
         mapper(self.User, users_table)
-        mapper(self.UserHistory, users_history_table)
         mapper(self.ActivUser, active_users_table)
+        mapper(self.UserHistory, users_history_table)
 
         # создание сессии:
         Session = sessionmaker(bind=self.database_engine)
@@ -112,6 +112,10 @@ class ServerDb:
     # со временем последнего входа.
 
     def user_login(self, username, ip_address, port):
+        """
+        ф-ция входа
+        """
+        print(username, ip_address, port)
         # ищем в таблице пользователя с именем user_name
         user = self.session.query(self.User).filter_by(name=username)
         # если такой пользователь есть:
@@ -127,6 +131,7 @@ class ServerDb:
             self.session.commit()
         # запись в таблицу активных юзеров о входе:
         new_user = self.ActivUser(user.id, ip_address, port, datetime.datetime.now())
+        print(new_user.ip_address)
         self.session.add(new_user)
         # сохранить вход в таблице истории:
         history = self.UserHistory(user.id, datetime.datetime.now(), ip_address, port)
@@ -134,8 +139,36 @@ class ServerDb:
         # сохранить изменения:
         self.session.commit()
 
+    def user_logout(self, username):
+        """
+        ф-ция выхода
+        """
+        # выбираем юзера по имени:
+        user = self.session.query(self.User).filter_by(name=username).first()
+        # удаляем его из активных:
+        self.session.query(self.ActivUser).filter_by(user=user.id).delete()
+        self.session.commit()
+
+    def active_users_list(self):
+        """
+        показывает список всех активных юзеров
+        """
+        users = self.session.query(self.User.name, self.ActivUser.ip,
+                                   self.ActivUser.port, self.ActivUser.login_time)
+        return users.all()
+# self.user = user_id
+#             self.ip = user_ip
+#             self.port = user_port
+#             self.login_time = user_login_time  # когда залогинился или время актив?
+#             self.id = None
+
+
+
 
 if __name__ == '__main__':
     db_1 = ServerDb()
-    db_1.user_login('Vasiliy', '192.168.1.1', 7771)
-    db_1.user_login('Petia', '192.168.1.2', 8888)
+    db_1.user_login('Vasiliy', '192.168.1.1', 7777)
+    db_1.user_login('Petia', '192.168.1.2',  8886)
+    # print(db_1.ActivUser)
+    # db_1.user_logout('Petia')
+    # print(db_1.active_users_list())
