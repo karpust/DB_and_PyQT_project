@@ -51,13 +51,20 @@ def cmd_arg_parse():
     return listen_address, listen_port
 
 
-class ServSock(metaclass=ServerVerifier):  # metaclass=ServerVerifier
+# класс сервера:
+class ServSock(metaclass=ServerVerifier):
     listen_port = Port()
 
-    def __init__(self, address, port):
+    def __init__(self, address, port, database):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # параметры подключения:
         self.listen_address = address
         self.listen_port = port
+        # база данных сервера:
+        self.database = database
+        # список подключенных клиентов:
+        # список сообщений на отправку:
+        # словарь с именами и соотв им сокетами:
 
     @log
     def check_msg(self, message, message_lst, client, clients, names):
@@ -173,8 +180,34 @@ class ServSock(metaclass=ServerVerifier):  # metaclass=ServerVerifier
 
 def main():
     listen_address, listen_port = cmd_arg_parse()
-    server = ServSock(listen_address, listen_port)
+    database = ServerDb()
+    server = ServSock(listen_address, listen_port, database)
     server.server_connect()
+    # Основной цикл сервера:
+    # while True:
+    #     command = input('Введите команду: ')
+    #     if command == 'help':
+    #         print('Поддерживаемые комманды:')
+    #         print('users - список известных пользователей')
+    #         print('connected - список подключённых пользователей')
+    #         print('loghist - история входов пользователя')
+    #         print('exit - завершение работы сервера.')
+    #         print('help - вывод справки по поддерживаемым командам')
+    #     elif command == 'exit':
+    #         break
+    #     elif command == 'users':
+    #         for user in sorted(database.all_users_list()):
+    #             print(f'Пользователь {user[0]}, последний вход: {user[1]}')
+    #     elif command == 'connected':
+    #         for user in sorted(database.active_users_list()):
+    #             print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
+    #     elif command == 'loghist':
+    #         name = input('Введите имя пользователя для просмотра истории. '
+    #                      'Для вывода всей истории, просто нажмите Enter: ')
+    #         for user in sorted(database.all_history()):
+    #             print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
+    #     else:
+    #         print('Команда не распознана.')
 
 
 if __name__ == '__main__':
