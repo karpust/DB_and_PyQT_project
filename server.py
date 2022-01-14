@@ -16,9 +16,11 @@ from common.utils import recieve_msg, send_msg
 import socket
 from metaclasses import ServerVerifier
 from descriptors import Port
+from server_database import ServerDb
 
 
-# cсылка на созданный логгер:
+# cсылка на созданный логгер,
+# Инициализация логирования сервера:
 SERVER_LOGGER = logging.getLogger('server')
 
 

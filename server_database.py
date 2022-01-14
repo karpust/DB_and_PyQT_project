@@ -39,19 +39,19 @@ class ServerDb:
     class ActivUser:
         # всех активных пользователей:
         def __init__(self, user_id, ip_address, port, login_time):
+            self.id = None
             self.user = user_id
             self.ip_address = ip_address
             self.port = port
             self.login_time = login_time  # когда залогинился или время актив?
-            self.id = None
 
     class UserHistory:
         # историй всех пользователей:
         def __init__(self, user, login_date, user_ip, user_port):
             self.id = None
             self.user = user
-            self.date = login_date
-            self.ip = user_ip
+            self.login_time = login_date
+            self.ip_address = user_ip
             self.port = user_port
 
     # ----------------------создание движка базы данных:--------------------------
@@ -67,7 +67,7 @@ class ServerDb:
         # ------------------------подготовка создания таблиц-------------------------
         # всех пользователей:
         users_table = Table('Users', self.metadata,
-                            Column('id', Integer, primary_key=True),
+                            Column('id', Integer, primary_key=True),  # имя колонки должно совпадать с именем поля класса
                             Column('name', String, unique=True),
                             Column('last_login', DateTime)
                             )
@@ -84,10 +84,10 @@ class ServerDb:
         # историй всех пользователей:
         users_history_table = Table('Login_history', self.metadata,
                                     Column('id', Integer, primary_key=True),
-                                    Column('user', ForeignKey('Users.id')),  # не unique=True
+                                    Column('user', ForeignKey('Users.id')),  # пользователи повторяются
                                     Column('login_time', DateTime),
                                     Column('ip_address', String),
-                                    Column('port', String)
+                                    Column('port', Integer)
                                     )
 
         # -------------------создание таблиц:------------------------
@@ -153,16 +153,24 @@ class ServerDb:
         """
         показывает список всех активных юзеров
         """
-        users = self.session.query(self.User.name, self.ActivUser.ip,
-                                   self.ActivUser.port, self.ActivUser.login_time)
+        users = self.session.query(self.User.name, self.ActivUser.ip_address,
+                                   self.ActivUser.port,
+                                   self.ActivUser.login_time).join(self.User)
         return users.all()
-# self.user = user_id
-#             self.ip = user_ip
-#             self.port = user_port
-#             self.login_time = user_login_time  # когда залогинился или время актив?
-#             self.id = None
 
+    def all_users_list(self):
+        """
+        показывает список всех юзеров которые когда-либо были
+        """
+        users = self.session.query(self.User.name, self.User.last_login)
+        return users.all()
 
+    def all_history(self):
+        users = self.session.query(self.User.name,
+                                   self.UserHistory.login_time,
+                                   self.UserHistory.ip_address,
+                                   self.UserHistory.port,).join(self.User)
+        return users.all()
 
 
 if __name__ == '__main__':
@@ -170,5 +178,7 @@ if __name__ == '__main__':
     db_1.user_login('Vasiliy', '192.168.1.1', 7777)
     db_1.user_login('Petia', '192.168.1.2',  8886)
     # print(db_1.ActivUser)
-    # db_1.user_logout('Petia')
-    # print(db_1.active_users_list())
+    db_1.user_logout('Petia')
+    print(db_1.active_users_list())
+    print(db_1.all_users_list())
+    print(db_1.all_history())
