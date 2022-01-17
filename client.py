@@ -19,7 +19,11 @@ class ClientSender(Thread, metaclass=ClientVerifier):
     def __init__(self, name_account, sock):
         super().__init__()
         self.name_account = name_account
-        self.sock = sock
+        self.sock = self.init_sock()
+
+    def init_sock(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        return sock
 
     @log
     def create_exit_msg(self):
@@ -91,6 +95,11 @@ class ClientReader(Thread, metaclass=ClientVerifier):
         super().__init__()
         self.name_account = name_account
         self.sock = sock
+        self.sock = self.init_sock()
+
+    def init_sock(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        return sock
 
     @log
     def check_messages_by_server(self):
@@ -152,7 +161,7 @@ def check_server_msg(server_msg):
 
 
 @log
-def cmd_arg_parse(self):  # sys.argv = ['client.py', '127.0.0.1', 8888]
+def cmd_arg_parse():  # sys.argv = ['client.py', '127.0.0.1', 8888]
     """
     Парсер аргументов коммандной строки
     """
@@ -172,6 +181,9 @@ def cmd_arg_parse(self):  # sys.argv = ['client.py', '127.0.0.1', 8888]
     return server_address, server_port, client_name
 
 
+
+
+
 @log
 def main():
     # Загружаем параметы коммандной строки:
@@ -186,6 +198,7 @@ def main():
 
     # соединение с сервером:
     try:
+        # sock - это абстрактный сокет!!!!!
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect((server_address, server_port))
         client_msg = create_presence_msg(client_name)
