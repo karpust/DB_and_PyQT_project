@@ -1,12 +1,8 @@
 import argparse
 import json
 import sys
-import threading
 import time
-from common.variables import ACTION, PRESENCE, TIME, TYPE, STATUS, USER, \
-    ACCOUNT_NAME, RESPONSE, ERROR, CLIENT_ADDRESS_DEFAULT, PORT_DEFAULT, \
-    MESSAGE, MESSAGE_TEXT, SENDER, EXIT, DESTINATION
-from ipaddress import ip_address
+from common.variables import *
 import logging
 import logs.client_log_config
 from errors import *
@@ -24,10 +20,6 @@ class ClientSender(Thread, metaclass=ClientVerifier):
         super().__init__()
         self.name_account = name_account
         self.sock = sock
-        # self.sock =
-        # self.server_address = None
-        # self.server_port = None
-        # self.client_name = None
 
     @log
     def create_exit_msg(self):
