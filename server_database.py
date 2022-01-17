@@ -54,6 +54,15 @@ class ServerDb:
             self.ip_address = user_ip
             self.port = user_port
 
+    class ContactsList:
+        # список контактов юзера:
+        def __init__(self, name, contact):
+            self.id = None
+            self.name = name
+            self.contact = contact
+
+
+
     # ----------------------создание движка базы данных:--------------------------
     def __init__(self):
         # Создаём движок базы данных:
@@ -90,6 +99,12 @@ class ServerDb:
                                     Column('port', Integer)
                                     )
 
+        contacts_list_table = Table('Contacts_list', self.metadata,
+                                    Column('id', Integer, primary_key=True),
+                                    Column('name', ForeignKey('Users.id')),
+                                    Column('contact', ForeignKey('Users.id'))
+                                    )
+
         # -------------------создание таблиц:------------------------
         self.metadata.create_all(self.database_engine)
 
@@ -98,6 +113,7 @@ class ServerDb:
         mapper(self.User, users_table)
         mapper(self.ActivUser, active_users_table)
         mapper(self.UserHistory, users_history_table)
+        mapper(self.ContactsList, contacts_list_table)
 
         # создание сессии:
         Session = sessionmaker(bind=self.database_engine)
@@ -175,6 +191,23 @@ class ServerDb:
             users = users.filter(self.User.name == username)
         return users.all()
 
+    def add_contact(self, name, contact):
+        """
+        ф-ция добавляет контакт юзера
+        """
+        # есть такой юзер:
+        name = self.session.query(self.User).filter_by(name=name).first()
+        # и он чей-то контакт:
+        contact = self.session.query(self.User).filter_by(name=contact).first()
+        # проверка что контакта еще нет в списке и что?
+        if not contact or self.session.query(self.ContactsList)\
+                .filter_by(name=name.id, contact=contact.id).count():
+            return
+        contact = self.ContactsList(name.id, contact.id)
+        self.session.add(contact)
+        self.session.commit()
+
+
 
 if __name__ == '__main__':
     db_1 = ServerDb()
@@ -186,4 +219,5 @@ if __name__ == '__main__':
     print(db_1.all_users_list())
     print(db_1.all_history())
     print(db_1.all_history('Vasiliy'))
+    print(db_1.add_contact('Vasiliy', 'Petia'))
 
