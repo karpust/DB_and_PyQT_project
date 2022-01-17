@@ -14,11 +14,12 @@ from decos import log
 import socket
 from common.utils import recieve_msg, send_msg
 from metaclasses import ClientVerifier
+from threading import Thread
 
 CLIENT_LOGGER = logging.getLogger('client')
 
 
-class ClientSock(metaclass=ClientVerifier):
+class ClientSock(Thread, metaclass=ClientVerifier):
     def __init__(self):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_address = None
