@@ -259,6 +259,10 @@ class ServerDb:
         reciever_row = self.session.query(self.ActionHistory).filter_by(user=reciever).first.id
         reciever_row.recvd += 1
 
+        def message_history(self):
+            """
+            Функция возвращает количество переданных и полученных сообщений
+            """
 
 if __name__ == '__main__':
     db_1 = ServerDb()
