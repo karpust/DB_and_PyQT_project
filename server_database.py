@@ -45,7 +45,7 @@ class ServerDb:
             self.port = port
             self.login_time = login_time  # когда залогинился или время актив?
 
-    class UserHistory:
+    class LoginHistory:
         # историй всех пользователей:
         def __init__(self, user, login_date, user_ip, user_port):
             self.id = None
@@ -61,7 +61,13 @@ class ServerDb:
             self.name = name
             self.contact = contact
 
-
+    class ActionHistory:
+        # история всех действий юзера:
+        def __init__(self, user):
+            self.id = None
+            self.user = user
+            self.sent = 0
+            self.recvd = 0
 
     # ----------------------создание движка базы данных:--------------------------
     def __init__(self):
@@ -91,19 +97,26 @@ class ServerDb:
                                    )
 
         # историй всех пользователей:
-        users_history_table = Table('Login_history', self.metadata,
-                                    Column('id', Integer, primary_key=True),
-                                    Column('user', ForeignKey('Users.id')),  # пользователи повторяются
-                                    Column('login_time', DateTime),
-                                    Column('ip_address', String),
-                                    Column('port', Integer)
-                                    )
+        users_login_table = Table('Login_history', self.metadata,
+                                  Column('id', Integer, primary_key=True),
+                                  Column('user', ForeignKey('Users.id')),  # пользователи повторяются
+                                  Column('login_time', DateTime),
+                                  Column('ip_address', String),
+                                  Column('port', Integer)
+                                  )
 
         contacts_list_table = Table('Contacts_list', self.metadata,
                                     Column('id', Integer, primary_key=True),
                                     Column('name', ForeignKey('Users.id')),
                                     Column('contact', ForeignKey('Users.id'))
                                     )
+
+        users_action_table = Table('Actions_history', self.metadata,
+                                   Column('id', Integer, primary_key=True),
+                                   Column('user', ForeignKey('Users.id')),
+                                   Column('sent', Integer),
+                                   Column('recvd', Integer)
+                                   )
 
         # -------------------создание таблиц:------------------------
         self.metadata.create_all(self.database_engine)
@@ -112,8 +125,9 @@ class ServerDb:
         # связываем данные и таблицы:
         mapper(self.User, users_table)
         mapper(self.ActivUser, active_users_table)
-        mapper(self.UserHistory, users_history_table)
+        mapper(self.LoginHistory, users_login_table)
         mapper(self.ContactsList, contacts_list_table)
+        mapper(self.ActionHistory, users_action_table)
 
         # создание сессии:
         Session = sessionmaker(bind=self.database_engine)
@@ -150,7 +164,7 @@ class ServerDb:
         print(new_user.ip_address)
         self.session.add(new_user)
         # сохранить вход в таблице истории:
-        history = self.UserHistory(user.id, datetime.datetime.now(), ip_address, port)
+        history = self.LoginHistory(user.id, datetime.datetime.now(), ip_address, port)
         self.session.add(history)
         # сохранить изменения:
         self.session.commit()
@@ -181,11 +195,11 @@ class ServerDb:
         users = self.session.query(self.User.name, self.User.last_login)
         return users.all()
 
-    def all_history(self, username=None):
+    def login_history(self, username=None):
         users = self.session.query(self.User.name,
-                                   self.UserHistory.login_time,
-                                   self.UserHistory.ip_address,
-                                   self.UserHistory.port,).join(self.User)
+                                   self.LoginHistory.login_time,
+                                   self.LoginHistory.ip_address,
+                                   self.LoginHistory.port, ).join(self.User)
         if username:
             # история для конкретного пользователя:
             users = users.filter(self.User.name == username)
@@ -195,29 +209,71 @@ class ServerDb:
         """
         ф-ция добавляет контакт юзера
         """
-        # есть такой юзер:
-        name = self.session.query(self.User).filter_by(name=name).first()
-        # и он чей-то контакт:
-        contact = self.session.query(self.User).filter_by(name=contact).first()
-        # проверка что контакта еще нет в списке и что?
-        if not contact or self.session.query(self.ContactsList)\
-                .filter_by(name=name.id, contact=contact.id).count():
+        # юзер с именем name:
+        user_name = self.session.query(self.User).filter_by(name=name).first()
+        # юзер с именем contact:
+        user_contact = self.session.query(self.User).filter_by(name=contact).first()
+        # если нет юзера с именем contact или он уже записан в таблице контактов:
+        if not user_contact or self.session.query(self.ContactsList)\
+                .filter_by(name=user_name.id, contact=user_contact.id).count():
             return
-        contact = self.ContactsList(name.id, contact.id)
+        # иначе добавляем в таблицу контактов:
+        contact = self.ContactsList(user_name.id, user_contact.id)
         self.session.add(contact)
         self.session.commit()
 
+    def delete_contact(self, name, contact):
+        """
+        ф-ция удаляет контакт юзера
+        """
+        # юзер с именем name:
+        user_name = self.session.query(self.User).filter_by(name=name).first()
+        # юзер с именем contact:
+        user_contact = self.session.query(self.User).filter_by(name=contact).first()
+        # если нет такого юзера:
+        if not user_contact:
+            return
+        # иначе удаляем:
+        self.session.query(self.ContactsList).filter(self.ContactsList.name == user_name.id,
+                                                     self.ContactsList.contact == user_contact.id).delete()
+        self.session.commit()
+
+    def get_user_contacts(self, username):
+        # юзер чьи контакты
+        user = self.session.query(self.User).filter_by(name=username).one()
+        query = self.session.query(self.ContactsList, self.User.name)\
+            .filter_by(name=user.id)\
+            .join(self.User, self.ContactsList.contact == self.User.id)
+        # выбираем имена контактов:
+        print([contact[1] for contact in query.all()])
+        return [contact[1] for contact in query.all()]
+
+    def message_transfer(self, sender, reciever):
+        # получаем id отправителя:
+        sender = self.session.query(self.User).filter_by(name=sender).first().id
+        # получаем id получателя:
+        reciever = self.session.query(self.User).filter_by(name=reciever).first().id
+        # Запрашиваем строки из истории и увеличиваем счётчики:
+        sender_row = self.session.query(self.ActionHistory).filter_by(user=sender).first.id
+        sender_row.sent += 1
+        reciever_row = self.session.query(self.ActionHistory).filter_by(user=reciever).first.id
+        reciever_row.recvd += 1
 
 
 if __name__ == '__main__':
     db_1 = ServerDb()
     db_1.user_login('Vasiliy', '192.168.1.1', 7777)
-    db_1.user_login('Petia', '192.168.1.2',  8886)
+    db_1.user_login('Petia', '192.168.1.2', 8886)
+    db_1.user_login('Maria', '192.168.1.2', 8886)
     print(db_1.active_users_list())
     db_1.user_logout('Petia')
     print(db_1.active_users_list())
     print(db_1.all_users_list())
-    print(db_1.all_history())
-    print(db_1.all_history('Vasiliy'))
-    print(db_1.add_contact('Vasiliy', 'Petia'))
+    print(db_1.login_history())
+    print(db_1.login_history('Vasiliy'))
+    db_1.add_contact('Vasiliy', 'Petia')
+    db_1.add_contact('Vasiliy', 'Maria')
+    db_1.get_user_contacts('Vasiliy')
+    db_1.delete_contact('Vasiliy', 'Maria')
+    db_1.get_user_contacts('Vasiliy')
 

@@ -1025,3 +1025,4 @@
 2022-01-14 17:09:12,210 - ERROR    - client - Клиенту не удалось декодировать json-строку, полученную от сервера
 2022-01-14 17:09:12,210 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=312, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 59928), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1642169352.209226, 'user': {'name_account': 'client3'}}), {}. Функция send_msg вызывается из функции client.client_connect() 
 2022-01-14 17:09:12,710 - ERROR    - client - Клиенту не удалось декодировать json-строку, полученную от сервера
+2022-01-17 11:28:18,253 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 

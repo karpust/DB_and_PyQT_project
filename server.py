@@ -215,7 +215,7 @@ def main():
         elif command == 'loghist':
             name = input('Введите имя пользователя для просмотра истории. '
                          'Для вывода всей истории, просто нажмите Enter: ')
-            for user in sorted(database.all_history()):
+            for user in sorted(database.login_history()):
                 print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
         else:
             print('Команда не распознана.')
