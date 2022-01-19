@@ -159,6 +159,8 @@ class ServerDb:
             self.session.add(user)
             # чтобы присвоить новому юзеру id:
             self.session.commit()
+            user_history = self.ActionHistory(user.id)
+            self.session.add(user_history)
         # запись в таблицу активных юзеров о входе:
         new_user = self.ActivUser(user.id, ip_address, port, datetime.datetime.now())
         print(new_user.ip_address)
@@ -239,6 +241,9 @@ class ServerDb:
         self.session.commit()
 
     def get_user_contacts(self, username):
+        """
+        ф-ция возвращает контакты конкретного юзера
+        """
         # юзер чьи контакты
         user = self.session.query(self.User).filter_by(name=username).one()
         query = self.session.query(self.ContactsList, self.User.name)\
@@ -249,20 +254,31 @@ class ServerDb:
         return [contact[1] for contact in query.all()]
 
     def message_transfer(self, sender, reciever):
+        """
+        ф-ция-счетчик полученных и принятых сообщений
+        """
         # получаем id отправителя:
         sender = self.session.query(self.User).filter_by(name=sender).first().id
         # получаем id получателя:
         reciever = self.session.query(self.User).filter_by(name=reciever).first().id
         # Запрашиваем строки из истории и увеличиваем счётчики:
-        sender_row = self.session.query(self.ActionHistory).filter_by(user=sender).first.id
+        sender_row = self.session.query(self.ActionHistory).filter_by(user=sender).first()
         sender_row.sent += 1
-        reciever_row = self.session.query(self.ActionHistory).filter_by(user=reciever).first.id
+        reciever_row = self.session.query(self.ActionHistory).filter_by(user=reciever).first()
         reciever_row.recvd += 1
+        self.session.commit()
 
-        def message_history(self):
-            """
-            Функция возвращает количество переданных и полученных сообщений
-            """
+    def message_history(self):
+        """
+        ф-ция возвращает кол-во переданных и полученных сообщений
+        """
+        query = self.session.query(self.User.name,
+                                   self.User.last_login,
+                                   self.ActionHistory.sent,
+                                   self.ActionHistory.recvd,
+                                   ).join(self.User)
+        return query.all()
+
 
 if __name__ == '__main__':
     db_1 = ServerDb()
@@ -280,4 +296,6 @@ if __name__ == '__main__':
     db_1.get_user_contacts('Vasiliy')
     db_1.delete_contact('Vasiliy', 'Maria')
     db_1.get_user_contacts('Vasiliy')
+    db_1.message_transfer('Vasiliy', 'Petia')
+    print('db_1.message_history: ', db_1.message_history())
 
