@@ -26,10 +26,18 @@ MESSAGE_TEXT = 'message_text'
 SENDER = 'from'
 DESTINATION = 'to'
 EXIT = 'exit'
-RESPONSE_400 = {RESPONSE: 400, ERROR: 'Bad request'}
-RESPONSE_200 = {RESPONSE: 200}
+ADD_CONTACT = 'add'
+DELETE_CONTACT = 'delete'
+GET_USER_CONTACTS = 'get_contacts'
+GET_USERS = 'get_users'
+LIST_INFO = 'data_list'
 
 # База данных для хранения данных сервера:
 SERVER_DATABASE = 'sqlite:///server_base.db3'
 # Текущий уровень логирования
 LOGGING_LEVEL = logging.DEBUG
+
+RESPONSE_400 = {RESPONSE: 400, ERROR: 'Bad request'}
+RESPONSE_200 = {RESPONSE: 200}
+RESPONSE_202 = {RESPONSE: 202, LIST_INFO: None}
+

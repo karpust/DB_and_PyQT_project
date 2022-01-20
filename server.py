@@ -1,4 +1,6 @@
 import argparse
+import configparser
+import os.path
 import sys
 from ipaddress import ip_address
 from select import select
@@ -11,13 +13,18 @@ from common.utils import recieve_msg, send_msg
 import socket
 from metaclasses import ServerVerifier
 from descriptors import Port
-from threading import Thread
+from threading import Thread, Lock
 from server_database import ServerDb
 
 
 # cсылка на созданный логгер,
 # Инициализация логирования сервера:
 SERVER_LOGGER = logging.getLogger('server')
+
+# Флаг, что был подключён новый пользователь, нужен чтобы не мучать BD
+# постоянными запросами на обновление
+new_connection = False
+conflag_lock = Lock()
 
 
 @log
@@ -130,12 +137,13 @@ class ServSock(Thread, metaclass=ServerVerifier):
     @log
     def check_msg(self, message, client):
         """
-        проверяет сообщение клиента:
-        если это сообщение о присутствии - отправить ответ клиенту,
-        если это сообщение др клиенту - добавить сообщение в очередь
+        обработчик сообщений от клиентов
+        принимает словарь, проверяет корректность,
+        отправляет словарь-ответ если нужно
         """
-        # если это сообщение о присутствии и ок, ответим {RESPONSE: 200}
+        global new_connection
         SERVER_LOGGER.debug(f'Разбор сообщения от клиента {message}.')
+        # если это сообщение о присутствии и ок, ответим {RESPONSE: 200}:
         if ACTION in message and TIME in message \
                 and USER in message and message[ACTION] == PRESENCE:
             # если такой пользователь еще не зарегистрирован,
@@ -145,6 +153,8 @@ class ServSock(Thread, metaclass=ServerVerifier):
                 client_ip, client_port = client.getpeername()
                 self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 send_msg(client, RESPONSE_200)
+                with conflag_lock:
+                    new_connection = True
             else:
                 response = RESPONSE_400
                 response[ERROR] = 'Имя пользователя уже занято.'
@@ -156,14 +166,43 @@ class ServSock(Thread, metaclass=ServerVerifier):
         elif ACTION in message and TIME in message and DESTINATION in message \
                 and MESSAGE_TEXT in message and SENDER in message and message[ACTION] == MESSAGE:
             self.messages.append(message)
+            # в бд у отправленных и полученных увеличится счетчик на +1:
+            self.database.message_transfer(message[SENDER], message[DESTINATION])
             return
         # если клиент выходит:
         elif ACTION in message and ACCOUNT_NAME in message and message[ACTION] == EXIT:
             self.database.user_logout(message[ACCOUNT_NAME])
+            SERVER_LOGGER.info(
+                f'Клиент {message[ACCOUNT_NAME]} корректно отключился от сервера.')
             self.clients.remove(self.names[message[ACCOUNT_NAME]])
             self.names[message[ACCOUNT_NAME]].close()
             del self.names[message[ACCOUNT_NAME]]
+            with conflag_lock:
+                new_connection = True
             return
+        # если это запрос списка контактов:
+        elif ACTION in message and USER in message and message[ACTION] == GET_USER_CONTACTS and \
+                self.names[message[USER]] == client:
+            response = RESPONSE_200
+            response[LIST_INFO] = self.database.get_user_contacts(message[USER])
+            send_msg(client, response)
+        # если это запрос на добавление контакта:
+        elif ACTION in message and USER in message and message[ACTION] == ADD_CONTACT and \
+                ACCOUNT_NAME in message and self.names[message[USER]] == client:
+            self.database.add_contact(message[USER], message[ACCOUNT_NAME])
+            send_msg(client, RESPONSE_200)
+        # если это запрос на удаление контакта:
+        elif ACTION in message and USER in message and message[ACTION] == DELETE_CONTACT and \
+                ACCOUNT_NAME in message and self.names[message[USER]] == client:
+            self.database.delete_contact(message[USER], message[ACCOUNT_NAME])
+            send_msg(client, RESPONSE_200)
+        # если это запрос всех известных пользователей:
+        elif ACTION in message and message[ACTION] == GET_USERS and \
+                ACCOUNT_NAME in message and self.names[message[ACCOUNT_NAME]] == client:
+            response = RESPONSE_200
+            response[LIST_INFO] = [user[0] for user in self.database.all_users_list]
+            send_msg(client, response)
+
         else:
             response = RESPONSE_400
             response[ERROR] = 'запрос не корректен'
@@ -189,8 +228,22 @@ class ServSock(Thread, metaclass=ServerVerifier):
 
 
 def main():
-    listen_address, listen_port = cmd_arg_parse()
-    database = ServerDb()
+    # загрузка файла конфигурации сервера:
+    config = configparser.ConfigParser()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    config.read(f'{dir_path}/{"server.ini"}')
+
+    # Загрузка параметров командной строки:
+    listen_address, listen_port = cmd_arg_parse(
+        config['SETTINGS']['Default_port'], config['SETTINGS']['Listen_Address'])
+
+    # Инициализация базы данных:
+    database = ServerDb(
+        os.path.join(
+            config['SETTINGS']['Database_path'],
+            config['SETTINGS']['Database_file']))
+
+    # Создание экземпляра класса - сервера и его запуск:
     server = ServSock(listen_address, listen_port, database)
     server.daemon = True
     server.start()
