@@ -42,15 +42,15 @@ def cmd_arg_parse():
     listen_address = namespace.a
     listen_port = namespace.p
 
-    if listen_address != '':
-        try:
-            ip_address(listen_address)
-        except ValueError:
-            SERVER_LOGGER.critical(f'Попытка запуска сервера с указанием ip-адреса {listen_address}. '
-                                   f'Адрес некорректен')
-            sys.exit(1)
-    SERVER_LOGGER.info(f'Сервер запущен: ip-адрес для подключений: {listen_address}, '
-                       f'номер порта для подключений: {listen_port}')
+    # if listen_address != '':
+    #     try:
+    #         ip_address(listen_address)
+    #     except ValueError:
+    #         SERVER_LOGGER.critical(f'Попытка запуска сервера с указанием ip-адреса {listen_address}. '
+    #                                f'Адрес некорректен')
+    #         sys.exit(1)
+    # SERVER_LOGGER.info(f'Сервер запущен: ip-адрес для подключений: {listen_address}, '
+    #                    f'номер порта для подключений: {listen_port}')
     return listen_address, listen_port
 
 

@@ -10,20 +10,22 @@ from decos import log
 import socket
 from common.utils import recieve_msg, send_msg
 from metaclasses import ClientVerifier
-from threading import Thread
+from threading import Thread, Lock
 
 CLIENT_LOGGER = logging.getLogger('client')
 
+# Объект блокировки сокета и работы с базой данных:
+sock_lock = Lock()
+db_lock = Lock()
+
 
 class ClientSender(Thread, metaclass=ClientVerifier):
-    def __init__(self, name_account, sock):
+    # Класс создания и отправки сообщений на сервер и взаимодействия с пользователем.
+    def __init__(self, name_account, sock, database):
         super().__init__()
         self.name_account = name_account
-        self.sock = self.init_sock()
-
-    def init_sock(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        return sock
+        self.sock = sock
+        self.database = database
 
     @log
     def create_exit_msg(self):
@@ -43,9 +45,14 @@ class ClientSender(Thread, metaclass=ClientVerifier):
         Создает сообщение(словарь) для
         отправки другому пользователю
         """
-
         to_user = input('Введите имя получателя: ')
         msg = input('Введите текст сообщения: ')
+
+        # проверка что получатель существует:
+        with db_lock:
+            if not self.database.check_user(to_user):
+                CLIENT_LOGGER.error(f'Попытка отправить сообщение незарегистрированому получателю: {to}')
+                return
         message = {
             ACTION: MESSAGE,
             TIME: time.time(),
@@ -54,6 +61,9 @@ class ClientSender(Thread, metaclass=ClientVerifier):
             SENDER: self.name_account
         }
         CLIENT_LOGGER.debug(f'Сформирован словарь сообщения {message}')
+        # сохраняем сообщения для истории:
+        with db_lock:
+            self.database.s
         try:
             send_msg(self.sock, message)  # что это за сокет, откуда или кому ?  это сокет клиента
             CLIENT_LOGGER.info(f'Отправлено сообщение для пользователя {to_user}')
@@ -181,25 +191,131 @@ def cmd_arg_parse():  # sys.argv = ['client.py', '127.0.0.1', 8888]
     return server_address, server_port, client_name
 
 
+def contact_list_req(sock, name):
+    """
+    ф-ция запроса списка контактов
+    """
+    CLIENT_LOGGER.debug(f'Запрос контакт листа для пользователя {name}')
+    req = {
+        ACTION: GET_USER_CONTACTS,
+        TIME: time.time(),
+        USER: name
+    }
+    CLIENT_LOGGER.debug(f'Сформирован запрос {req}')
+    send_msg(sock, req)
+    ans = recieve_msg(sock)
+    CLIENT_LOGGER.debug(f'Получен ответ {ans}')
+    if RESPONSE in ans and ans[RESPONSE] == 202:
+        return ans[LIST_INFO]
+    else:
+        raise ServerError
 
+
+def add_contact(sock, username, contact):
+    """
+    ф-ция добавления юзера в список контактов
+    """
+    CLIENT_LOGGER.debug(f'Создание контакта {contact}')
+    req = {
+        ACTION: ADD_CONTACT,
+        TIME: time.time(),
+        USER: username,
+        ACCOUNT_NAME: contact
+    }
+    send_msg(sock, req)
+    ans = recieve_msg(sock)
+    if RESPONSE in ans and ans[RESPONSE] == 200:
+        pass
+    else:
+        raise ServerError('Не удалось создать контакт. Ошибка')
+    print('Создан новый контакт')
+
+
+def user_list_req(sock, username):
+    """
+    ф-ция запроса всех юзеров
+    """
+    CLIENT_LOGGER.debug(f'Запрос списка всех пользователей {username}')
+    req = {
+        ACTION: GET_USERS,
+        TIME: time.time(),
+        ACCOUNT_NAME: username
+    }
+    send_msg(sock, req)
+    ans = recieve_msg(sock)
+    if RESPONSE in ans and ans[RESPONSE] == 200:
+        return ans[LIST_INFO]
+    else:
+        raise ServerError
+
+
+def delete_contact(sock, username, contact):
+    """
+    ф-ция удаления юзера из списка контактов
+    """
+    CLIENT_LOGGER.debug(f'Создание контакта {contact}')
+    req = {
+        ACTION: DELETE_CONTACT,
+        TIME: time.time(),
+        USER: username,
+        ACCOUNT_NAME: contact
+    }
+    send_msg(sock, req)
+    ans = recieve_msg(sock)
+    if RESPONSE in ans and ans[RESPONSE] == 200:
+        pass
+    else:
+        raise ServerError(f'Ошибка удаления клиента')
+    print(f'Клиент удален')
+
+
+def db_load(sock, database, username):
+    """
+    ф-ция загружает данные с сервера в базу данных
+    """
+    # загрузка списка всех известных юзеров:
+    try:
+        users_list = user_list_req(sock, username)
+    except ServerError:
+        CLIENT_LOGGER.error(f'Ошибка запроса списка известных пользователей')
+    else:
+        database.add_users(users_list)
+
+    # загрузка списка контактов:
+    try:
+        contacts_list = contact_list_req(sock, username)
+    except ServerError:
+        CLIENT_LOGGER.error(f'Ошибка запроса списка контактов')
+    else:
+        for contact in contacts_list:
+            database.add_contact(contact)
 
 
 @log
 def main():
+    # Сообщаем о запуске
+    print('Консольный месседжер. Клиентский модуль.')
+
     # Загружаем параметы коммандной строки:
     server_address, server_port, client_name = cmd_arg_parse()
 
-    print(f'Консольный мессенджер. Клиентский модуль. Имя пользователя: {client_name}')
-    if not client_name:  # если имя пользователя не было задано, запросить
+    # если имя пользователя не было задано, запросить:
+    if not client_name:
         client_name = input('Введите имя пользователя: ')
+    else:
+        print(f'Клиентский модуль запущен с именем: {client_name}')
 
     CLIENT_LOGGER.info(f'Запущен клиент с параметрами: адрес сервера: {server_address}, '
                        f'порт {server_port}, имя пользователя: {client_name}.')
 
-    # соединение с сервером:
+    # Инициализация сокета и сообщение серверу о появлении клиента:
     try:
-        # sock - это абстрактный сокет!!!!!
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        # Таймаут 1 секунда, необходим для освобождения сокета:
+        sock.settimeout(1)
+
+
         sock.connect((server_address, server_port))
         client_msg = create_presence_msg(client_name)
         send_msg(sock, client_msg)
@@ -221,17 +337,21 @@ def main():
                                f'Конечный узел отверг запрос на подключение')
         sys.exit(1)
     else:
-        # если соединение с сервером установлено корректно,
-        # то запускаем клиентский поток приема сообщений:
-        reciever = ClientReader(client_name, sock)
-        reciever.daemon = True
-        reciever.start()
+        # Инициализация клиентской БД:
+        database = ClientDB(client_name)
+        db_load(sock, database, client_name)
 
+        # если соединение с сервером установлено корректно,
         # запускаем поток отправки сообщений и взаимодействия с пользователем:
-        sender = ClientSender(client_name, sock)
+        sender = ClientSender(client_name, sock, database)
         sender.daemon = True
         sender.start()
         CLIENT_LOGGER.debug('Запущены процессы')
+
+        # затем клиентский поток приема сообщений:
+        reciever = ClientReader(client_name, sock, database)
+        reciever.daemon = True
+        reciever.start()
 
         # основной цикл:
         # если один из потоков завершен, значит или
