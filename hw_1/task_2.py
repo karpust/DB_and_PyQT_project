@@ -31,7 +31,7 @@ def host_range_ping(make_ping=True):
         except ValueError:
             print('Некоррекное значение')
     last_oct = int(start_ip.split('.')[3])
-    if last_oct > 256:
+    if last_oct > 255:
         print(f'Данный диапазон выходит за рамки последнего октета ip-адреса')
     else:
         lst_ip = [str(start_ipv4 + ip) for ip in range(range_ip)]
