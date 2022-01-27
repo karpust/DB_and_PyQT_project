@@ -15,6 +15,11 @@ from metaclasses import ServerVerifier
 from descriptors import Port
 from threading import Thread, Lock
 from server_database import ServerDb
+from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QStandardItem, QStandardItemModel
+from server_gui import MainWindow, HistoryWindow, ConfigWindow, \
+    gui_create_model, create_stat_model
 
 
 # cсылка на созданный логгер,
@@ -28,14 +33,14 @@ conflag_lock = Lock()
 
 
 @log
-def cmd_arg_parse():
+def cmd_arg_parse(default_port, default_address):
     """
     Парсер аргументов коммандной строки
     """
     parser = argparse.ArgumentParser()  # создаем объект парсер
     # описываем аргументы которые парсер будет считывать из cmd:
-    parser.add_argument('-p', default=8888, type=int, nargs='?')  # описываем именные аргументы
-    parser.add_argument('-a', default='', nargs='?')
+    parser.add_argument('-p', default=default_port, type=int, nargs='?')  # описываем именные аргументы
+    parser.add_argument('-a', default=default_address, nargs='?')
     # nargs='?' значит: если присутствует один аргумент – он будет сохранён,
     # иначе – будет использовано значение из ключа default
     namespace = parser.parse_args(sys.argv[1:])  # все кроме имени скрипта
@@ -92,7 +97,6 @@ class ServSock(Thread, metaclass=ServerVerifier):
         SERVER_LOGGER.debug('Сервер в ожидании клиента')
         while True:  # ждем подключения клиента, если подключится - добавим в список клиентов
             try:
-                print('-------------------------------------accept-------------------------------')
                 client, client_addr = self.sock.accept()
             except OSError:  # если таймаут вышел, ловим исключение
                 pass
@@ -106,10 +110,11 @@ class ServSock(Thread, metaclass=ServerVerifier):
             # проверяем есть ли ожидающие клиенты:
             try:
                 if self.clients:
-                    recv_data_lst, send_data_lst, err_lst = select(self.clients, self.clients, [], 0)
+                    recv_data_lst, send_data_lst, err_lst = \
+                        select(self.clients, self.clients, [], 0)
                     # на чтение, на отправку, на возврат ошибки
-            except OSError:
-                pass
+            except OSError as err:
+                SERVER_LOGGER.error(f'Ошибка работы с сокетами: {err}')
 
             # проверяем есть ли получающие клиенты,
             # если есть, то добавим словарь-сообщение в очередь,
@@ -117,18 +122,25 @@ class ServSock(Thread, metaclass=ServerVerifier):
             if recv_data_lst:
                 for client_with_msg in recv_data_lst:
                     try:
-                        self.check_msg(recieve_msg(client_with_msg), self.messages,
-                                       client_with_msg, self.clients, self.names)
-                    except Exception:
+                        self.check_msg(recieve_msg(client_with_msg), client_with_msg)
+                    except OSError:
                         SERVER_LOGGER.info(f'Клиент {client_with_msg.getpeername()} '
-                                           f'отключен от сервера.')
+                                           f'отключился от сервера.')
+                        # удалим клиента из активных в бд:
+                        for name in self.names:
+                            if self.names[name] == client_with_msg:
+                                self.database.user_logout(name)
+                                # удалим имя клиента из словаря:
+                                del self.names[name]
+                                break
                         self.clients.remove(client_with_msg)
 
             # если есть сообщения то обрабатываем каждое:
             for msg in self.messages:
                 try:
-                    self.send_to_msg(msg, self.names, send_data_lst)
-                except Exception:
+                    self.send_to_msg(msg, send_data_lst)
+                except (ConnectionAbortedError, ConnectionError,
+                        ConnectionResetError, ConnectionRefusedError):
                     SERVER_LOGGER.info(f'Связь с клиентом с именем {msg[DESTINATION]} была потеряна ')
                     self.clients.remove(self.names[msg[DESTINATION]])
                     del self.names[msg[DESTINATION]]
@@ -183,7 +195,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
         # если это запрос списка контактов:
         elif ACTION in message and USER in message and message[ACTION] == GET_USER_CONTACTS and \
                 self.names[message[USER]] == client:
-            response = RESPONSE_200
+            response = RESPONSE_202
             response[LIST_INFO] = self.database.get_user_contacts(message[USER])
             send_msg(client, response)
         # если это запрос на добавление контакта:
@@ -199,28 +211,28 @@ class ServSock(Thread, metaclass=ServerVerifier):
         # если это запрос всех известных пользователей:
         elif ACTION in message and message[ACTION] == GET_USERS and \
                 ACCOUNT_NAME in message and self.names[message[ACCOUNT_NAME]] == client:
-            response = RESPONSE_200
+            response = RESPONSE_202
             response[LIST_INFO] = [user[0] for user in self.database.all_users_list]
             send_msg(client, response)
 
         else:
             response = RESPONSE_400
-            response[ERROR] = 'запрос не корректен'
+            response[ERROR] = 'запрос некорректен'
             send_msg(client, response)
             return
 
     @log
-    def send_to_msg(self, message, names, listen_socks):
+    def send_to_msg(self, message, listen_socks):
         """
         функция адресной отправки сообщения конкретному клиенту.
         принимает словарь-сообщение, список зарегистрированных пользователей
         и слушающие сокеты. Ничего не возвращает.
         """
-        if message[DESTINATION] in names and names[message[DESTINATION]] in listen_socks:
-            send_msg(names[message[DESTINATION]], message)
+        if message[DESTINATION] in self.names and self.names[message[DESTINATION]] in listen_socks:
+            send_msg(self.names[message[DESTINATION]], message)
             SERVER_LOGGER.info(f'Отправлено сообщение пользователю {message[DESTINATION]} '
                                f'от пользователя {message[SENDER]}')
-        elif message[DESTINATION] in names and names[message[DESTINATION]] not in listen_socks:
+        elif message[DESTINATION] in self.names and self.names[message[DESTINATION]] not in listen_socks:
             raise ConnectionError
         else:
             SERVER_LOGGER.error(f'Пользователь {message[DESTINATION]} не зарегистророван '
@@ -235,43 +247,109 @@ def main():
 
     # Загрузка параметров командной строки:
     listen_address, listen_port = cmd_arg_parse(
-        config['SETTINGS']['Default_port'], config['SETTINGS']['Listen_Address'])
+        config['SETTINGS']['Default_port'],
+        config['SETTINGS']['Listen_Address']
+    )
 
     # Инициализация базы данных:
-    database = ServerDb(
-        os.path.join(
-            config['SETTINGS']['Database_path'],
-            config['SETTINGS']['Database_file']))
+    database = ServerDb(os.path.join(
+        config['SETTINGS']['Database_path'],
+        config['SETTINGS']['Database_file']
+    )
+    )
 
     # Создание экземпляра класса - сервера и его запуск:
     server = ServSock(listen_address, listen_port, database)
     server.daemon = True
     server.start()
 
-    while True:
-        command = input('Введите команду: ')
-        if command == 'help':
-            print('Поддерживаемые комманды:')
-            print('users - список известных пользователей')
-            print('connected - список подключённых пользователей')
-            print('loghist - история входов пользователя')
-            print('exit - завершение работы сервера.')
-            print('help - вывод справки по поддерживаемым командам')
-        elif command == 'exit':
-            break
-        elif command == 'users':
-            for user in sorted(database.all_users_list()):
-                print(f'Пользователь {user[0]}, последний вход: {user[1]}')
-        elif command == 'connected':
-            for user in sorted(database.active_users_list()):
-                print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
-        elif command == 'loghist':
-            name = input('Введите имя пользователя для просмотра истории. '
-                         'Для вывода всей истории, просто нажмите Enter: ')
-            for user in sorted(database.login_history()):
-                print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
+    # создаем графическое окружение для сервера:
+    server_app = QApplication(sys.argv)
+    main_window = MainWindow()
+
+    # иниц параметров в окна:
+    main_window.statusBar().showMessage('Server Working')
+    main_window.active_clients_table.setModel(gui_create_model(database))
+    main_window.active_clients_table.resizeColumnsToContents()
+    main_window.active_clients_table.resizeRowsToContents()
+
+    def list_update():
+        """
+        ф-ция проверяет флаг подключения,
+        обновляет список подключенных
+        """
+        global new_connection
+        if new_connection:
+            main_window.active_clients_table.setModel(
+                gui_create_model(database)
+            )
+            main_window.active_clients_table.resizeColumnsToContents()
+            main_window.active_clients_table.resizeRowsToContents()
+            with conflag_lock:
+                new_connection = False
+
+    def show_statistics():
+        """
+        ф-ция показывает окно со статистикой клиентов
+        """
+        global stat_window
+        stat_window = HistoryWindow()
+        stat_window.history_table.setModel(create_stat_model(database))
+        stat_window.history_table.resizeColumnsToContents()
+        stat_window.history_table.resizeRowsToContents()
+        stat_window.show()
+
+    def server_config():
+        """
+        ф-ция показывает окно с настройками сервера
+        """
+        global config_window
+        config_window = ConfigWindow()
+        config_window.db_path.insert(config['SETTINGS']['Database_path'])
+        config_window.db_file.insert(config['SETTINGS']['Database_file'])
+        config_window.port.insert(config['SETTINGS']['Default_port'])
+        config_window.ip.insert(config['SETTINGS']['Listen_Address'])
+        config_window.save_btn.clicked.connect(save_server_config)
+
+    def save_server_config():
+        """
+        ф-ция сохранения настроек сервера
+        """
+        global config_window
+        message = QMessageBox()
+        config['SETTINGS']['Database_path'] = config_window.db_path.text()
+        config['SETTINGS']['Database_file'] = config_window.db_file.text()
+        try:
+            port = int(config_window.port.text())
+        except ValueError:
+            message.warning(config_window, 'Ошибка', 'Порт должен быть числом')
         else:
-            print('Команда не распознана.')
+            config['SETTINGS']['Listen_Address'] = config_window.ip.text()
+            if 1023 < port < 65536:
+                config['SETTINGS']['Default_port'] = str(port)
+                print(port)
+                with open('server.ini', 'w') as conf:
+                    config.write(conf)
+                    message.information(
+                        config_window, 'OK', 'Настройки успешно сохранены'
+                    )
+            else:
+                message.warning(
+                    config_window, 'Ошибка', 'Порт должен быть от 1024 до 65536'
+                )
+
+    # Таймер обновляет список клиентов раз в секунду:
+    timer = QTimer()
+    timer.timeout.connect(list_update)
+    timer.start(1000)
+
+    # связываем кнопки с процедурами:
+    main_window.refresh_btn.triggered.connect(list_update)
+    main_window.show_history_btn.triggered.connect(show_statistics)
+    main_window.config_btn.triggered.connect(server_config)
+
+    # запуск GUI:
+    server_app.exec_()
 
 
 if __name__ == '__main__':

@@ -26,8 +26,8 @@ from common.variables import *
 import datetime
 
 
+# класс-хранилище для серверной стороны
 class ServerDb:
-    # класс-хранилище для серверной стороны
     # создание классов для отображения таблиц:
     class User:
         # всех пользователей:
@@ -55,14 +55,14 @@ class ServerDb:
             self.port = user_port
 
     class ContactsList:
-        # список контактов юзера:
+        # списка контактов юзера:
         def __init__(self, name, contact):
             self.id = None
             self.name = name
             self.contact = contact
 
     class ActionHistory:
-        # история всех действий юзера:
+        # истории всех действий юзера:
         def __init__(self, user):
             self.id = None
             self.user = user
@@ -70,7 +70,7 @@ class ServerDb:
             self.recvd = 0
 
     # ----------------------создание движка базы данных:--------------------------
-    def __init__(self):
+    def __init__(self, path):
         # Создаём движок базы данных:
         self.database_engine = create_engine(SERVER_DATABASE, echo=False, pool_recycle=7200)
         # echo=False - отключает вывод на экран sql-запросов)
@@ -82,7 +82,7 @@ class ServerDb:
         # ------------------------подготовка создания таблиц-------------------------
         # всех пользователей:
         users_table = Table('Users', self.metadata,
-                            Column('id', Integer, primary_key=True),  # имя колонки должно совпадать с именем поля класса
+                            Column('id', Integer, primary_key=True),  # имя колонки должно совпадать с полем класса
                             Column('name', String, unique=True),
                             Column('last_login', DateTime)
                             )

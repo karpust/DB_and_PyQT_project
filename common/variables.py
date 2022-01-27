@@ -8,7 +8,7 @@ CLIENT_ADDRESS_DEFAULT = 'localhost'
 PORT_DEFAULT = 7777
 ENCODING = 'utf-8'
 MAX_CONNECTION = 5
-MAX_PACKAGE_LENGTH = 4096
+MAX_PACKAGE_LENGTH = 1024
 
 
 #  константы JIM протокола:
@@ -36,6 +36,11 @@ LIST_INFO = 'data_list'
 SERVER_DATABASE = 'sqlite:///server_base.db3'
 # Текущий уровень логирования
 LOGGING_LEVEL = logging.DEBUG
+
+RESPONSE_400 = {RESPONSE: 400, ERROR: 'Bad request'}
+RESPONSE_200 = {RESPONSE: 200}
+RESPONSE_202 = {RESPONSE: 202, LIST_INFO: None}
+
 
 RESPONSE_400 = {RESPONSE: 400, ERROR: 'Bad request'}
 RESPONSE_200 = {RESPONSE: 200}
