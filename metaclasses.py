@@ -52,13 +52,13 @@ class ClientVerifier(type):
             if command in methods:
                 raise TypeError(f'There must be no such attribute in the class: '
                                 f'{absent_methods}')
-        for attr in must_attr:
-            if attr not in attrs:
-                raise TypeError(f'Socket is not correctly initialized: '
-                                f'{attrs}')
-        print(f'methods: {methods}')
-        print('==============================')
-        print(f'attrs: {attrs}')
+        # for attr in must_attr:
+        #     if attr not in attrs:
+        #         raise TypeError(f'Socket is not correctly initialized: '
+        #                         f'{attrs}')
+        # print(f'methods: {methods}')
+        # print('==============================')
+        # print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 
@@ -96,9 +96,9 @@ class ServerVerifier(type):
             if attr not in attrs:
                 raise TypeError(f'Socket is not correctly initialized: '
                                 f'{attrs}')
-        print(f'methods: {methods}')
-        print('==============================')
-        print(f'attrs: {attrs}')
+        # print(f'methods: {methods}')
+        # print('==============================')
+        # print(f'attrs: {attrs}')
         # вызываем конструктор предка:
         super().__init__(clsname, bases, clsdict)
 
