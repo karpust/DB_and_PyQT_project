@@ -46,16 +46,6 @@ def cmd_arg_parse(default_port, default_address):
     namespace = parser.parse_args(sys.argv[1:])  # все кроме имени скрипта
     listen_address = namespace.a
     listen_port = namespace.p
-
-    # if listen_address != '':
-    #     try:
-    #         ip_address(listen_address)
-    #     except ValueError:
-    #         SERVER_LOGGER.critical(f'Попытка запуска сервера с указанием ip-адреса {listen_address}. '
-    #                                f'Адрес некорректен')
-    #         sys.exit(1)
-    # SERVER_LOGGER.info(f'Сервер запущен: ip-адрес для подключений: {listen_address}, '
-    #                    f'номер порта для подключений: {listen_port}')
     return listen_address, listen_port
 
 
@@ -212,7 +202,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
         elif ACTION in message and message[ACTION] == GET_USERS and \
                 ACCOUNT_NAME in message and self.names[message[ACCOUNT_NAME]] == client:
             response = RESPONSE_202
-            response[LIST_INFO] = [user[0] for user in self.database.all_users_list]
+            response[LIST_INFO] = [user[0] for user in self.database.all_users_list()]
             send_msg(client, response)
 
         else:
@@ -327,7 +317,6 @@ def main():
             config['SETTINGS']['Listen_Address'] = config_window.ip.text()
             if 1023 < port < 65536:
                 config['SETTINGS']['Default_port'] = str(port)
-                print(port)
                 with open('server.ini', 'w') as conf:
                     config.write(conf)
                     message.information(

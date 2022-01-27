@@ -25,12 +25,13 @@ class ClientSender(Thread, metaclass=ClientVerifier):
     def __init__(self, name_account, sock, database):
         super().__init__()
         self.name_account = name_account
-        self.sock = self.init_sock()
+        self.sock = sock
         self.database = database
+        # s = self.init_sock()
 
-    def init_sock(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        return sock
+    # def init_sock(self):
+    #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #     return sock
 
 
     @log
@@ -57,7 +58,7 @@ class ClientSender(Thread, metaclass=ClientVerifier):
         # проверка что получатель существует:
         with db_lock:
             if not self.database.check_user(to_user):
-                CLIENT_LOGGER.error(f'Попытка отправить сообщение незарегистрированому получателю: {to}')
+                CLIENT_LOGGER.error(f'Попытка отправить сообщение незарегистрированому получателю: {to_user}')
                 return
         msg_dict = {
             ACTION: MESSAGE,
@@ -200,12 +201,12 @@ class ClientReader(Thread, metaclass=ClientVerifier):
         super().__init__()
         self.name_account = name_account
         self.sock = sock
-        self.sock = self.init_sock()
         self.database = database
+        # s = self.init_sock()
 
-    def init_sock(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        return sock
+    # def init_sock(self):
+    #     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #     return sock
 
     @log
     def run(self):
@@ -365,7 +366,7 @@ def user_list_req(sock, username):
     }
     send_msg(sock, req)
     ans = recieve_msg(sock)
-    if RESPONSE in ans and ans[RESPONSE] == 200:
+    if RESPONSE in ans and ans[RESPONSE] == 202:
         return ans[LIST_INFO]
     else:
         raise ServerError
