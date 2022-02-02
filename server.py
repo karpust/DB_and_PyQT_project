@@ -2,12 +2,10 @@ import argparse
 import configparser
 import os.path
 import sys
-from ipaddress import ip_address
 from select import select
 from common.variables import *
 from socket import SOL_SOCKET, SO_REUSEADDR
 import logging
-import logs.server_log_config
 from decos import log
 from common.utils import recieve_msg, send_msg
 import socket
@@ -17,14 +15,13 @@ from threading import Thread, Lock
 from server_database import ServerDb
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
 from server_gui import MainWindow, HistoryWindow, ConfigWindow, \
     gui_create_model, create_stat_model
 
 
 # cсылка на созданный логгер,
 # Инициализация логирования сервера:
-SERVER_LOGGER = logging.getLogger('server')
+logger = logging.getLogger('server')
 
 # Флаг, что был подключён новый пользователь, нужен чтобы не мучать BD
 # постоянными запросами на обновление
@@ -71,7 +68,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
         self.names = dict()
 
     def init_socket(self):
-        SERVER_LOGGER.info(
+        logger.info(
             f'Запущен сервер, порт для подключений: {self.listen_address}, '
             f'адрес с которого принимаются подключения: {self.listen_port}.'
             f' Если адрес не указан, принимаются соединения с любых адресов.')
@@ -84,7 +81,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
 
     @log
     def run(self):
-        SERVER_LOGGER.debug('Сервер в ожидании клиента')
+        logger.debug('Сервер в ожидании клиента')
         while True:  # ждем подключения клиента, если подключится - добавим в список клиентов
             try:
                 client, client_addr = self.sock.accept()
@@ -92,7 +89,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
                 pass
             else:
                 self.clients.append(client)
-                SERVER_LOGGER.debug(f'Сервер соединен с клиентом {client_addr}')
+                logger.debug(f'Сервер соединен с клиентом {client_addr}')
             recv_data_lst = []  # список клиентов которые получают на чтение
             send_data_lst = []  # список клиентов которые отправляют
             err_lst = []  # список клиентов на возврат ошибки
@@ -104,7 +101,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
                         select(self.clients, self.clients, [], 0)
                     # на чтение, на отправку, на возврат ошибки
             except OSError as err:
-                SERVER_LOGGER.error(f'Ошибка работы с сокетами: {err}')
+                logger.error(f'Ошибка работы с сокетами: {err}')
 
             # проверяем есть ли получающие клиенты,
             # если есть, то добавим словарь-сообщение в очередь,
@@ -114,8 +111,8 @@ class ServSock(Thread, metaclass=ServerVerifier):
                     try:
                         self.check_msg(recieve_msg(client_with_msg), client_with_msg)
                     except OSError:
-                        SERVER_LOGGER.info(f'Клиент {client_with_msg.getpeername()} '
-                                           f'отключился от сервера.')
+                        logger.info(f'Клиент {client_with_msg.getpeername()} '
+                                    f'отключился от сервера.')
                         # удалим клиента из активных в бд:
                         for name in self.names:
                             if self.names[name] == client_with_msg:
@@ -131,7 +128,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
                     self.send_to_msg(msg, send_data_lst)
                 except (ConnectionAbortedError, ConnectionError,
                         ConnectionResetError, ConnectionRefusedError):
-                    SERVER_LOGGER.info(f'Связь с клиентом с именем {msg[DESTINATION]} была потеряна ')
+                    logger.info(f'Связь с клиентом с именем {msg[DESTINATION]} была потеряна ')
                     self.clients.remove(self.names[msg[DESTINATION]])
                     del self.names[msg[DESTINATION]]
                 self.messages.clear()
@@ -144,7 +141,7 @@ class ServSock(Thread, metaclass=ServerVerifier):
         отправляет словарь-ответ если нужно
         """
         global new_connection
-        SERVER_LOGGER.debug(f'Разбор сообщения от клиента {message}.')
+        logger.debug(f'Разбор сообщения от клиента {message}.')
         # если это сообщение о присутствии и ок, ответим {RESPONSE: 200}:
         if ACTION in message and TIME in message \
                 and USER in message and message[ACTION] == PRESENCE:
@@ -167,14 +164,21 @@ class ServSock(Thread, metaclass=ServerVerifier):
         # если это обычное сообщение, добавим его в очередь
         elif ACTION in message and TIME in message and DESTINATION in message \
                 and MESSAGE_TEXT in message and SENDER in message and message[ACTION] == MESSAGE:
-            self.messages.append(message)
-            # в бд у отправленных и полученных увеличится счетчик на +1:
-            self.database.message_transfer(message[SENDER], message[DESTINATION])
+            if message[DESTINATION] in self.names:
+                self.messages.append(message)
+                # в бд у отправленных и полученных увеличится счетчик на +1:
+                self.database.message_transfer(message[SENDER],
+                                               message[DESTINATION])
+                send_msg(client, RESPONSE_200)
+            else:
+                response = RESPONSE_400
+                response[ERROR] = 'Пользователь не зарегистрирован на сервере.'
+                send_msg(client, response)
             return
         # если клиент выходит:
         elif ACTION in message and ACCOUNT_NAME in message and message[ACTION] == EXIT:
             self.database.user_logout(message[ACCOUNT_NAME])
-            SERVER_LOGGER.info(
+            logger.info(
                 f'Клиент {message[ACCOUNT_NAME]} корректно отключился от сервера.')
             self.clients.remove(self.names[message[ACCOUNT_NAME]])
             self.names[message[ACCOUNT_NAME]].close()
@@ -220,20 +224,38 @@ class ServSock(Thread, metaclass=ServerVerifier):
         """
         if message[DESTINATION] in self.names and self.names[message[DESTINATION]] in listen_socks:
             send_msg(self.names[message[DESTINATION]], message)
-            SERVER_LOGGER.info(f'Отправлено сообщение пользователю {message[DESTINATION]} '
-                               f'от пользователя {message[SENDER]}')
+            logger.info(f'Отправлено сообщение пользователю {message[DESTINATION]} '
+                        f'от пользователя {message[SENDER]}')
         elif message[DESTINATION] in self.names and self.names[message[DESTINATION]] not in listen_socks:
             raise ConnectionError
         else:
-            SERVER_LOGGER.error(f'Пользователь {message[DESTINATION]} не зарегистророван '
-                                f'на сервере. Отправка сообщения невозможна.')
+            logger.error(f'Пользователь {message[DESTINATION]} не зарегистророван '
+                         f'на сервере. Отправка сообщения невозможна.')
+
+
+def config_load():
+    """
+    Загрузка файла конфигурации
+    """
+    config = configparser.ConfigParser()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    config.read(f"{dir_path}/{'server+++.ini'}")
+    # Если конфиг файл загружен правильно, запускаемся,
+    # иначе конфиг по умолчанию.
+    if 'SETTINGS' in config:
+        return config
+    else:
+        config.add_section('SETTINGS')
+        config.set('SETTINGS', 'Default_port', str(PORT_DEFAULT))
+        config.set('SETTINGS', 'Listen_Address', '')
+        config.set('SETTINGS', 'Database_path', '')
+        config.set('SETTINGS', 'Database_file', 'server_database.db3')
+        return config
 
 
 def main():
     # загрузка файла конфигурации сервера:
-    config = configparser.ConfigParser()
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    config.read(f'{dir_path}/{"server.ini"}')
+    config = config_load()
 
     # Загрузка параметров командной строки:
     listen_address, listen_port = cmd_arg_parse(
@@ -242,11 +264,8 @@ def main():
     )
 
     # Инициализация базы данных:
-    database = ServerDb(os.path.join(
-        config['SETTINGS']['Database_path'],
-        config['SETTINGS']['Database_file']
-    )
-    )
+    database = ServerDb(os.path.join(config['SETTINGS']['Database_path'],
+                                     config['SETTINGS']['Database_file']))
 
     # Создание экземпляра класса - сервера и его запуск:
     server = ServSock(listen_address, listen_port, database)

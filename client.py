@@ -1,7 +1,5 @@
 import argparse
-import json
 import sys
-import time
 
 from PyQt5.QtWidgets import QApplication
 
@@ -12,10 +10,10 @@ from client.transport import ClientTransport
 from common.variables import *
 from common.errors import *
 from decos import log
-from common.utils import recieve_msg, send_msg
 
 # Инициализация клиентского логера:
 logger = logging.getLogger('client')
+
 
 
 @log

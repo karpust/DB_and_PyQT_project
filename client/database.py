@@ -5,13 +5,13 @@
 """
 import os
 import sys
-sys.path.append('../')
+
 from sqlalchemy import create_engine, Table, Column, Integer, String, Text, \
-    MetaData, ForeignKey, DateTime
+    MetaData, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-from common.variables import *
 import datetime
 
+sys.path.append('../')
 
 # класс-хранилище клиентской стороны
 class ClientDb:

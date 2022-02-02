@@ -2,7 +2,7 @@ import os
 import sys
 import logging.handlers
 
-# sys.path.append('../')
+sys.path.append('../')
 
 # создадим путь для лог файла, чтобы создавался там же где логконфиг:
 PATH = os.path.dirname(os.path.abspath(__file__))

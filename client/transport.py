@@ -120,9 +120,7 @@ class ClientTransport(Thread, QObject):
             logger.debug(f'Получено сообщение от пользователя '
                          f'{message[SENDER]}:{message[MESSAGE_TEXT]}')
             self.database.save_message(message[SENDER], 'in', message[MESSAGE_TEXT])
-            logger.debug(f'Сообщение от пользователя сохранено в бд')
             self.new_message.emit(message[SENDER])
-            logger.debug(f'self.new_message.emit(message[SENDER])')
 
     def contact_list_update(self):
         """
