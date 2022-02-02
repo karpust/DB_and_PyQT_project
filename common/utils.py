@@ -1,8 +1,7 @@
 import json
 import sys
-from socket import socket
 from .variables import ENCODING, MAX_PACKAGE_LENGTH
-from errors import *
+from common.errors import *
 from decos import log
 sys.path.append('../')
 
@@ -33,6 +32,9 @@ def recieve_msg(socket_from):
         raise IncorrectDataRecievedError
     msg_decode = msg_bytes.decode(ENCODING)  # декодировали
     msg_json_dict = json.loads(msg_decode)  # в jsonObj(dict)
-    return msg_json_dict
+    if isinstance(msg_json_dict, dict):
+        return msg_json_dict
+    else:
+        raise TypeError
 
 

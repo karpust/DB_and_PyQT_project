@@ -3,13 +3,15 @@
 * список контактов;
 * история сообщений.
 """
+import os
+import sys
 
 from sqlalchemy import create_engine, Table, Column, Integer, String, Text, \
-    MetaData, ForeignKey, DateTime
+    MetaData, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-from common.variables import *
 import datetime
 
+sys.path.append('../')
 
 # класс-хранилище клиентской стороны
 class ClientDb:
@@ -22,10 +24,10 @@ class ClientDb:
 
     # истории сообщений:
     class MessageHistory:
-        def __init__(self, from_user, to_user, message):
+        def __init__(self, contact, direction, message):
             self.id = None
-            self.to_user = to_user
-            self.from_user = from_user
+            self.direction = direction
+            self.contact = contact
             self.message = message
             self.date = datetime.datetime.now()
 
@@ -41,7 +43,9 @@ class ClientDb:
         # Поскольку клиент мультипоточный необходимо отключить
         # проверки на подключения с разных потоков,
         # иначе sqlite3.ProgrammingError
-        self.db_engine = create_engine(f'sqlite:///client_{name}.db3',
+        path = os.path.dirname(os.path.realpath(__file__))
+        filename = f'client_{name}.db3'
+        self.db_engine = create_engine(f'sqlite:///{os.path.join(path, filename)}',
                                        echo=False, pool_recycle=7200,
                                        connect_args={'check_same_thread': False}
                                        )
@@ -57,8 +61,8 @@ class ClientDb:
         # истории сообщений:
         message_history = Table('message_history', self.metadata,
                                 Column('id', Integer, primary_key=True),
-                                Column('to_user', String),
-                                Column('from_user', String),
+                                Column('contact', String),
+                                Column('direction', String),
                                 Column('message', Text),
                                 Column('date', DateTime)
                                 )
@@ -92,8 +96,7 @@ class ClientDb:
         """
         if not self.session.query(self.Contacts)\
                 .filter_by(contact_name=contact).count():
-            contact_row = self.Contacts(contact)  # ?
-            print(f'contact_row: {contact_row}')
+            contact_row = self.Contacts(contact)
             self.session.add(contact_row)
             self.session.commit()
 
@@ -116,11 +119,11 @@ class ClientDb:
             self.session.add(user_row)
         self.session.commit()
 
-    def save_message(self, from_user, to_user, message):
+    def save_message(self, contact, direction, message):
         """
         ф-ция сохранения сообщений
         """
-        message_row = self.MessageHistory(from_user, to_user, message)
+        message_row = self.MessageHistory(contact, direction, message)
         self.session.add(message_row)
         self.session.commit()
 
@@ -151,22 +154,20 @@ class ClientDb:
         """
         ф-ция проверяет наличие контакта в таблице контактов
         """
-        if self.session.query(self.Contacts).filter_by(contact_name=contact).count():
+        if self.session.query(self.Contacts)\
+                .filter_by(contact_name=contact).count():
             return True
         else:
             return False
 
-    def get_history(self, from_user=None, to_user=None):
+    def get_history(self, contact):
         """
         ф-ция возвращает историю переписки юзеров
         в виде списка: от кого, кому, сообщения, дата
         """
-        query = self.session.query(self.MessageHistory)
-        if from_user:
-            query = query.filter_by(from_user=from_user)
-        if to_user:
-            query = query.filter_by(to_user=to_user)
-        return [(history_row.from_user, history_row.to_user,
+        query = self.session.query(self.MessageHistory)\
+            .filter_by(contact=contact)
+        return [(history_row.contact, history_row.direction,
                  history_row.message, history_row.date)
                 for history_row in query.all()]
 
@@ -188,7 +189,7 @@ if __name__ == '__main__':
     test_db.save_message('test6', 'test7', 'hello 7! this is 6')
     test_db.save_message('test1', 'test2', 'hello 2! this is 1')
     print(test_db.get_history('test1'))
-    print(test_db.get_history(to_user='test7'))
+    print(test_db.get_history('test7'))
 
 
 
