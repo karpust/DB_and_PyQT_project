@@ -1,8 +1,3 @@
-"""
-Реализовать хранение информации в БД на стороне клиента:
-* список контактов;
-* история сообщений.
-"""
 import os
 import sys
 
@@ -12,6 +7,7 @@ from sqlalchemy.orm import mapper, sessionmaker
 import datetime
 
 sys.path.append('../')
+
 
 # класс-хранилище клиентской стороны
 class ClientDb:

@@ -15,7 +15,6 @@ from decos import log
 logger = logging.getLogger('client')
 
 
-
 @log
 def cmd_arg_parse():  # sys.argv = ['client.py', '127.0.0.1', 8888]
     """
@@ -77,7 +76,7 @@ def main():
         # создаем GUI:
         main_window = ClientMainWindow(database, transport)
         main_window.make_connection(transport)
-        main_window.setWindowTitle(f'Чат-программа - {client_name}')
+        main_window.setWindowTitle(f'Пользователь - {client_name}')
         client_app.exec_()
 
         # после закрытия графической оболочки закрываем транспорт:
