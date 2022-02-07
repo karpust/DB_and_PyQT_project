@@ -1,238 +1,403 @@
-2022-02-04 19:15:58,935 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-04 19:16:05,750 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-04 19:16:05,902 - INFO     - transport - Попытка подключения №1
-2022-02-04 19:16:05,903 - INFO     - transport - Соединение с сервером установлено
-2022-02-04 19:16:05,903 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-04 19:16:05,905 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1156, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 64899), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1643991365.9030125, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-04 19:16:10,905 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-04 19:19:28,703 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-04 19:19:32,311 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-04 19:19:32,560 - INFO     - transport - Попытка подключения №1
-2022-02-04 19:19:32,561 - INFO     - transport - Соединение с сервером установлено
-2022-02-04 19:19:32,562 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-04 19:19:32,569 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1268, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 64928), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1643991572.561999, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-04 19:19:37,569 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-04 19:21:36,307 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-04 19:21:41,552 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-04 19:21:41,785 - INFO     - transport - Попытка подключения №1
-2022-02-04 19:21:41,786 - INFO     - transport - Соединение с сервером установлено
-2022-02-04 19:21:41,786 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-04 19:21:41,790 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=348, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 64948), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1643991701.7865353, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-04 19:21:46,790 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-05 16:08:25,475 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 17:51:56,961 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 17:52:01,078 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-05 17:52:01,221 - INFO     - transport - Попытка подключения №1
-2022-02-05 17:52:01,222 - INFO     - transport - Соединение с сервером установлено
-2022-02-05 17:52:01,223 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-05 17:52:01,225 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53097), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644072721.2236774, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:52:01,241 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53097), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-05 17:52:01,241 - DEBUG    - transport - Разбор сообщения от сервера {'response': 400, 'error': 'User not registered'}
-2022-02-05 17:52:30,080 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 17:53:42,628 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 17:53:45,950 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-05 17:53:46,122 - INFO     - transport - Попытка подключения №1
-2022-02-05 17:53:46,124 - INFO     - transport - Соединение с сервером установлено
-2022-02-05 17:53:46,124 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-05 17:53:46,126 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644072826.1248815, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:53:46,640 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-05 17:53:46,640 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': '028e85293d3ead1a9e519587fd3a6381296f291bc9fc55c9a133d52a3797f1524685ae344f56f2895a7596e8dfb384cf292a9f90ce2b8cbfa31001678123b9d1'}
-2022-02-05 17:53:46,641 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-05 17:53:46,641 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-05 17:53:46,641 - DEBUG    - transport - Запрос списка всех известных пользователей 1
-2022-02-05 17:53:46,642 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644072826.6410136, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:53:51,646 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-05 17:53:51,646 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-05 17:53:57,985 - DEBUG    - transport - Создание контакта 2
-2022-02-05 17:53:57,987 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>, {'action': 'add', 'time': 1644072837.9850373, 'user': '1', 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:54:32,312 - DEBUG    - transport - Создание контакта 2
-2022-02-05 17:54:32,313 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>, {'action': 'add', 'time': 1644072872.3137913, 'user': '1', 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:54:44,860 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53114), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1644072884.8590908, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 17:54:44,861 - DEBUG    - transport - Транспорт завершает работу.
-2022-02-05 17:55:00,678 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 18:19:51,216 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 18:19:58,518 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-05 18:19:59,036 - INFO     - transport - Попытка подключения №1
-2022-02-05 18:19:59,037 - INFO     - transport - Соединение с сервером установлено
-2022-02-05 18:19:59,037 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-05 18:19:59,041 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1060, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53382), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644074399.0379968, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 18:19:59,552 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1060, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53382), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-05 18:19:59,553 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': '3bb7297bc9bee1392814f7ba7eaab2fac65e51cd3d185b7ae65dc907745b678764b455bdb118fdd263fc25bae51f8a410f3ba3fae99cc09a846c5e5af94f271e'}
-2022-02-05 18:19:59,553 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-05 18:19:59,553 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-05 18:19:59,553 - DEBUG    - transport - Запрос списка всех известных пользователей копыто
-2022-02-05 18:19:59,554 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1060, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53382), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644074399.5531263, 'name_account': 'копыто'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 18:20:04,568 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-05 18:20:04,570 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-05 19:32:52,372 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 19:33:00,232 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-05 19:33:00,410 - INFO     - transport - Попытка подключения №1
-2022-02-05 19:33:00,411 - INFO     - transport - Соединение с сервером установлено
-2022-02-05 19:33:00,411 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-05 19:33:00,413 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 54110), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644078780.4112, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 19:33:00,420 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 54110), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-05 19:33:00,421 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': 'c09044b87e5a29207edeeefb12ad96622832da0dedfabe55de8c51452b28bd6de4df02d56f8c13a1d6e4ab4a77101311f37107acb8bd169aa7a429e33564d58f'}
-2022-02-05 19:33:00,421 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-05 19:33:00,421 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-05 19:33:00,421 - DEBUG    - transport - Запрос списка всех известных пользователей копыто
-2022-02-05 19:33:00,422 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 54110), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644078780.4212022, 'name_account': 'копыто'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 19:33:05,422 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-05 19:33:05,423 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-05 19:39:25,635 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-05 19:39:39,218 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-05 19:39:39,547 - INFO     - transport - Попытка подключения №1
-2022-02-05 19:39:39,548 - INFO     - transport - Соединение с сервером установлено
-2022-02-05 19:39:39,549 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-05 19:39:39,556 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1664, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 54183), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644079179.5493562, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-05 19:39:44,556 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:44:38,061 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:44:52,887 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: Василий
-2022-02-06 13:44:53,423 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:44:53,424 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:44:53,425 - DEBUG    - transport - Создано сообщение presence пользователя Василий
-2022-02-06 13:44:53,429 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51907), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144293.42522, 'user': {'name_account': 'Василий'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:44:58,441 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:45:13,676 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:45:21,813 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:45:21,966 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:45:21,967 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:45:21,967 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:45:21,969 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1308, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51917), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144321.9670486, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:45:26,969 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:45:38,722 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:45:45,825 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:45:46,143 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:45:46,147 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:45:46,149 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:45:46,151 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=300, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51919), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144346.1499054, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:45:51,160 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:45:57,715 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:46:07,238 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:46:07,421 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:46:07,422 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:46:07,422 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:46:07,424 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1200, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51920), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144367.422752, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:46:12,424 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:46:30,289 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:46:36,896 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:46:37,067 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:46:37,068 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:46:37,068 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:46:37,070 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1072, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51924), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144397.0684192, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:46:37,084 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1072, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51924), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-06 13:46:37,085 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': 'c63250d6adeba543ce1391a248623d6419089575b50b3fabde4b7c92847359d139617442747bd214a4963fcb7204f4a1daaf4e9b6007d24c94418a64d5aae99f'}
-2022-02-06 13:46:37,085 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-06 13:46:37,085 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-06 13:46:37,085 - DEBUG    - transport - Запрос списка всех известных пользователей копыто
-2022-02-06 13:46:37,087 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1072, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51924), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644144397.0864244, 'name_account': 'копыто'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:46:42,098 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-06 13:46:42,102 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-06 13:46:50,853 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:46:59,529 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: Василий
-2022-02-06 13:46:59,712 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:46:59,713 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:46:59,713 - DEBUG    - transport - Создано сообщение presence пользователя Василий
-2022-02-06 13:46:59,715 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1008, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51927), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144419.7130165, 'user': {'name_account': 'Василий'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:47:04,715 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:47:24,569 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:47:31,896 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: Василий
-2022-02-06 13:47:32,090 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:47:32,091 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:47:32,091 - DEBUG    - transport - Создано сообщение presence пользователя Василий
-2022-02-06 13:47:32,093 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51934), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144452.091321, 'user': {'name_account': 'Василий'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:47:37,093 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:48:20,726 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:48:28,366 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:48:28,548 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:48:28,549 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:48:28,549 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:48:28,551 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51940), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144508.549159, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:48:28,566 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51940), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-06 13:48:28,567 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': 'c24436f03c9504ab9473144e18f4695cbdff670ae6280e07170fb5f91297502405125ba3cf4c5e4f9e89e382fee9a10557540a56b10f95d820df3f88e684177e'}
-2022-02-06 13:48:28,567 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-06 13:48:28,567 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-06 13:48:28,567 - DEBUG    - transport - Запрос списка всех известных пользователей копыто
-2022-02-06 13:48:28,568 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51940), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644144508.567165, 'name_account': 'копыто'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:48:33,568 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-06 13:48:33,569 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-06 13:48:48,552 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:49:18,000 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: Василий
-2022-02-06 13:49:18,169 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:49:18,170 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:49:18,170 - DEBUG    - transport - Создано сообщение presence пользователя Василий
-2022-02-06 13:49:18,172 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1444, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51947), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144558.170761, 'user': {'name_account': 'Василий'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:49:23,182 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:49:52,077 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:49:57,305 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-06 13:49:57,457 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:49:57,458 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:49:57,459 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-06 13:49:57,460 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1280, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51948), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144597.4596882, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:50:02,461 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:50:47,547 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:50:52,514 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-06 13:50:52,670 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:50:52,671 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:50:52,672 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-06 13:50:52,673 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1040, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51958), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144652.6724863, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:50:57,674 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:51:15,413 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:51:20,682 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-06 13:51:20,893 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:51:20,894 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:51:20,894 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-06 13:51:20,897 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51969), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144680.894973, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:51:21,426 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51969), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-06 13:51:21,427 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': 'f36252e91e9a5d682d50714cb1581c2eaab1ce9d3f581a998d4fa51eb004321f5fa77c845c99cff87066bdd1bdb4554a85df7abb277996e0685c44d02a3e6bae'}
-2022-02-06 13:51:21,427 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-06 13:51:21,427 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-06 13:51:21,427 - DEBUG    - transport - Запрос списка всех известных пользователей 1
-2022-02-06 13:51:21,428 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51969), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644144681.4271138, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:51:26,428 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-06 13:51:26,429 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-06 13:51:50,516 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:51:59,072 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:51:59,226 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:51:59,227 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:51:59,227 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:51:59,229 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1044, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51974), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144719.2278523, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:52:04,232 - CRITICAL - transport - Потеряно соединение с сервером!
-2022-02-06 13:52:17,505 - CRITICAL - transport - Потеряно соединение с сервером.
-2022-02-06 13:53:32,327 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:53:39,230 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: копыто
-2022-02-06 13:53:39,405 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:53:39,406 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:53:39,407 - DEBUG    - transport - Создано сообщение presence пользователя копыто
-2022-02-06 13:53:39,410 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1276, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51995), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144819.4064617, 'user': {'name_account': 'копыто'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:53:39,424 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1276, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51995), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-06 13:53:39,424 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': '4266fca4033ef3ad0775621530dd708b29db3fbac6900922669772b5025f6e99ee5467b3e28caa5caf32082200cae53e727a124f1a2795a34d4574b94ffa9d83'}
-2022-02-06 13:53:39,424 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-06 13:53:39,424 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-06 13:53:39,425 - DEBUG    - transport - Запрос списка всех известных пользователей копыто
-2022-02-06 13:53:39,426 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1276, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51995), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644144819.4253724, 'name_account': 'копыто'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:53:44,426 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-06 13:53:44,427 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-06 13:54:12,744 - CRITICAL - transport - Потеряно соединение с сервером.
-2022-02-06 13:55:01,062 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:55:09,574 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-06 13:55:09,763 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:55:09,764 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:55:09,764 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-06 13:55:09,766 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1184, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52005), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644144909.7645004, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:55:09,782 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1184, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52005), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
-2022-02-06 13:55:09,782 - DEBUG    - transport - Разбор сообщения от сервера {'response': 511, 'bin': 'dda8fdad8e0b296453d7098ad3bd71d59616e9487f41925d389fe814d973dfdff7e09d8b1ea523f0552acb3be7968649f630dd381d52b9e954f012d9671aa4a9'}
-2022-02-06 13:55:09,782 - DEBUG    - transport - Принят неизвестный код подтверждения 511
-2022-02-06 13:55:09,782 - INFO     - transport - Соединение с сервером успешно установлено.
-2022-02-06 13:55:09,782 - DEBUG    - transport - Запрос списка всех известных пользователей 1
-2022-02-06 13:55:09,783 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1184, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52005), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644144909.782507, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:55:14,784 - ERROR    - transport - Таймаут соединения при обновлении спискапользователей
-2022-02-06 13:55:14,785 - DEBUG    - transport - Запущен процесс - приёмник собщений с сервера.
-2022-02-06 13:55:45,861 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1184, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52005), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1644144945.8607965, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:55:45,862 - DEBUG    - transport - Транспорт завершает работу.
-2022-02-06 13:58:04,347 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
-2022-02-06 13:58:09,610 - INFO     - client - Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, имя пользователя: 1
-2022-02-06 13:58:09,844 - INFO     - transport - Попытка подключения №1
-2022-02-06 13:58:09,845 - INFO     - transport - Соединение с сервером установлено
-2022-02-06 13:58:09,845 - DEBUG    - transport - Создано сообщение presence пользователя 1
-2022-02-06 13:58:09,851 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1304, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 52039), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644145089.8459394, 'user': {'name_account': '1'}}), {}. Функция send_msg вызывается из функции main() 
-2022-02-06 13:58:14,852 - CRITICAL - transport - Потеряно соединение с сервером!
+2022-02-07 15:43:14,203 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 15:43:17,488 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 15:43:17,488 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 15:43:17,554 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 15:43:17,610 - INFO     - transport - Connection attempt №1
+2022-02-07 15:43:17,610 - DEBUG    - transport - Connection established.
+2022-02-07 15:43:17,611 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 15:43:17,617 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 15:43:17,618 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 15:43:17,618 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644237797.6188538, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:18,144 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:18,144 - DEBUG    - transport - Server response: {'response': 511, 'bin': 'db146c9e5e667460352570fd5fdf9beb92154c0283a528b73a921d1f2274d702f5e4a7cd66a4168e1cbbbf4b2329794e7af63dda76e49fc0cf9df8789f519593'}
+2022-02-07 15:43:18,144 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'cfj2vQj/GUnUttpascWEEQ==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:18,145 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:18,145 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 15:43:18,145 - INFO     - transport - Server connection successfully established.
+2022-02-07 15:43:18,145 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 15:43:18,145 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644237798.145509, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:18,696 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:18,795 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 15:43:18,796 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644237798.7961953, 'user': '1'}
+2022-02-07 15:43:18,796 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644237798.7961953, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:19,208 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:19,208 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2']}
+2022-02-07 15:43:19,238 - DEBUG    - client - Transport is ready
+2022-02-07 15:43:19,245 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 15:43:22,076 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 15:43:24,505 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 15:43:24,505 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 15:43:24,568 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 15:43:24,610 - INFO     - transport - Connection attempt №1
+2022-02-07 15:43:24,611 - DEBUG    - transport - Connection established.
+2022-02-07 15:43:24,611 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 15:43:24,618 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 15:43:24,618 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 15:43:24,619 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644237804.618936, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:25,130 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:25,130 - DEBUG    - transport - Server response: {'response': 511, 'bin': '78e6c3aec3a60d661dc1c91b9603a966d501c9d57d3d8da5e3a23804921c36165e847ddfadc71e17c078071300b0d04561012c9f7d13cc656ac2f35d3c4f3a58'}
+2022-02-07 15:43:25,130 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': '5SFMRbDQDK8aC5oBu+x8FA==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:25,130 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:25,130 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 15:43:25,131 - INFO     - transport - Server connection successfully established.
+2022-02-07 15:43:25,131 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 15:43:25,131 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644237805.131354, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:25,653 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:25,668 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 15:43:25,668 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644237805.6687539, 'user': '2'}
+2022-02-07 15:43:25,668 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644237805.6687539, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:43:26,170 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:43:26,170 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['1', '3']}
+2022-02-07 15:43:26,226 - DEBUG    - client - Transport is ready
+2022-02-07 15:43:26,226 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 15:44:40,561 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '1', 'to': '2', 'time': 1644237880.561579, 'message_text': '2'}
+2022-02-07 15:44:41,047 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '1', 'to': '2', 'time': 1644237880.561579, 'message_text': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:44:41,245 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1332, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60768), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 15:44:41,245 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 15:44:41,245 - INFO     - transport - Sent message to user 2!!!!!
+2022-02-07 15:44:41,254 - DEBUG    - main_window - Отправлено сообщение для 2: 2
+2022-02-07 15:47:27,015 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '2', 'to': '1', 'time': 1644238047.0158367, 'message_text': '1'}
+2022-02-07 15:47:27,016 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 60779), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '2', 'to': '1', 'time': 1644238047.0158367, 'message_text': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 15:47:29,358 - CRITICAL - transport - Lost connection to server.
+2022-02-07 15:47:30,027 - CRITICAL - transport - Lost connection to server.
+2022-02-07 15:47:56,593 - DEBUG    - transport - Transport shuts down.
+2022-02-07 15:48:00,992 - DEBUG    - transport - Transport shuts down.
+2022-02-07 16:04:03,678 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:04:07,502 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:04:07,502 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:04:07,567 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:04:07,608 - INFO     - transport - Connection attempt №1
+2022-02-07 16:04:07,608 - DEBUG    - transport - Connection established.
+2022-02-07 16:04:07,608 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:04:07,615 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:04:07,616 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:04:07,616 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239047.6168857, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:08,120 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:08,121 - DEBUG    - transport - Server response: {'response': 511, 'bin': '591ee4adce69a23a86b26ef64af282407675a4d5bef632c75c1057644b374ef3e4cfa9eef30ab9278d75def96f4966427fda587629896259a2f55770828b7314'}
+2022-02-07 16:04:08,121 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'LaYWK4Hvpm9XgB96tTrn6Q==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:08,121 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:08,121 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:04:08,121 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:04:08,121 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:04:08,121 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239048.1218798, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:08,650 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:08,688 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 16:04:08,688 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239048.688193, 'user': '1'}
+2022-02-07 16:04:08,689 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239048.688193, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:09,171 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:09,171 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2']}
+2022-02-07 16:04:09,218 - DEBUG    - client - Transport is ready
+2022-02-07 16:04:09,219 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:04:16,403 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:04:25,174 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 16:04:25,174 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 16:04:25,298 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:04:25,354 - INFO     - transport - Connection attempt №1
+2022-02-07 16:04:25,365 - DEBUG    - transport - Connection established.
+2022-02-07 16:04:25,365 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:04:25,372 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 16:04:25,372 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 16:04:25,374 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239065.3727283, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:25,868 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:25,869 - DEBUG    - transport - Server response: {'response': 511, 'bin': 'd4d31ea8fe991439b889a4d79a9d6c6bf29733ad64821a225c99db87afcd2a0047acc0ead3459a3b33d0f78a39b7580d068b093c8c085ae7115d9638788b13fb'}
+2022-02-07 16:04:25,869 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'EBKafkrX9LWJF2nSYL93/g==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:25,870 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:25,871 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:04:25,871 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:04:25,871 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 16:04:25,872 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239065.8717768, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:26,409 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:26,423 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 16:04:26,424 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239066.424388, 'user': '2'}
+2022-02-07 16:04:26,424 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239066.424388, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:04:26,913 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:04:26,913 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['1', '3']}
+2022-02-07 16:04:26,949 - DEBUG    - client - Transport is ready
+2022-02-07 16:04:27,010 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:05:12,197 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '1', 'to': '2', 'time': 1644239112.1971629, 'message_text': '2'}
+2022-02-07 16:05:12,198 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '1', 'to': '2', 'time': 1644239112.1971629, 'message_text': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:05:12,559 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:05:12,559 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:05:12,560 - INFO     - transport - Sent message to user 2
+2022-02-07 16:05:13,011 - DEBUG    - main_window - Отправлено сообщение для 2: 2
+2022-02-07 16:05:22,350 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '2', 'to': '1', 'time': 1644239122.350379, 'message_text': '1'}
+2022-02-07 16:05:56,204 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '2', 'to': '1', 'time': 1644239122.350379, 'message_text': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:06:29,669 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1584, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61224), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:06:35,342 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:06:46,351 - INFO     - transport - Sent message to user 1
+2022-02-07 16:07:00,908 - DEBUG    - main_window - Отправлено сообщение для 1: 1
+2022-02-07 16:15:07,444 - DEBUG    - transport - Create a contact 3
+2022-02-07 16:15:07,445 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'add', 'time': 1644239707.4444132, 'user': '1', 'name_account': '3'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:15:07,808 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:15:07,808 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:15:07,869 - INFO     - main_window - Успешно добавлен контакт <PyQt5.QtGui.QStandardItem object at 0x0000020491E5E040>
+2022-02-07 16:15:22,276 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '1', 'to': '3', 'time': 1644239722.2769496, 'message_text': '3'}
+2022-02-07 16:15:22,277 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '1', 'to': '3', 'time': 1644239722.2769496, 'message_text': '3'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:15:22,548 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:15:22,548 - DEBUG    - transport - Parsing a message from the server {'response': 400, 'error': 'Пользователь не зарегистрирован на сервере.'}
+2022-02-07 16:15:28,743 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1376, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61196), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1644239728.7438514, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:15:28,743 - DEBUG    - transport - Transport shuts down.
+2022-02-07 16:15:29,244 - DEBUG    - transport - Lost connection to server.
+2022-02-07 16:16:15,180 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:16:18,460 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:16:18,460 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:16:18,527 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:16:18,552 - INFO     - transport - Connection attempt №1
+2022-02-07 16:16:18,552 - DEBUG    - transport - Connection established.
+2022-02-07 16:16:18,552 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:16:18,559 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:16:18,559 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:16:18,560 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239778.5597456, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:16:19,088 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:16:19,089 - DEBUG    - transport - Server response: {'response': 511, 'bin': '50d8ee6dd960a677ace75364f3c481af1593ccced3fe022498c3e0c65d7f05b640afa6d4e58bb14314419a617dab951dff0e13a1ef486b95fd82c6ba22ac3343'}
+2022-02-07 16:16:19,089 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': '45pQBltVdH0UILgImZSjsw==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:16:19,091 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:16:19,091 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:16:19,091 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:16:19,091 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:16:19,092 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239779.0914636, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:16:19,636 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:16:19,734 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 16:16:19,734 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239779.734597, 'user': '1'}
+2022-02-07 16:16:19,734 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239779.734597, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:16:20,153 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61378), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:16:20,153 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2', '3']}
+2022-02-07 16:16:20,221 - DEBUG    - client - Transport is ready
+2022-02-07 16:16:20,221 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:16:24,912 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:16:58,680 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 16:16:58,681 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 16:16:58,805 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:16:58,905 - INFO     - transport - Connection attempt №1
+2022-02-07 16:16:58,905 - DEBUG    - transport - Connection established.
+2022-02-07 16:16:58,905 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:16:58,912 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 16:16:58,913 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 16:16:58,914 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239818.9124353, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:17:01,465 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:17:02,550 - DEBUG    - transport - Server response: {'response': 511, 'bin': 'bf090d9ef4e8b8f86ede4f4b900977e1de5c535e9504790101091df9f3108b2cdfadc514104a214b749dae246094e948a4ad285fdcb296bebd0a6c1ab79d8937'}
+2022-02-07 16:17:02,551 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'M0j5/5xzKHzkXFFGR0w4nQ==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:17:04,658 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:17:05,707 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:17:05,708 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:17:05,708 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 16:17:05,709 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239825.7089171, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:17:10,322 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:17:16,028 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 16:17:16,029 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239836.02927, 'user': '2'}
+2022-02-07 16:17:16,031 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239836.02927, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:17:19,291 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1608, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61420), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:33,240 - CRITICAL - transport - Lost connection to server.
+2022-02-07 16:18:38,922 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:18:42,435 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:18:42,435 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:18:42,505 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:18:42,531 - INFO     - transport - Connection attempt №1
+2022-02-07 16:18:42,531 - DEBUG    - transport - Connection established.
+2022-02-07 16:18:42,531 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:18:42,538 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:18:42,539 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:18:42,539 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239922.5399542, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:43,049 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:43,049 - DEBUG    - transport - Server response: {'response': 511, 'bin': '9498dec6a51b39d3b8e9a15287b32adead8381da4f484b93d16e24d991ef5b595328a69e4a8286e4b2a84ae6607b30e97e19fed0261d5630a630e11b72d713f4'}
+2022-02-07 16:18:43,050 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'H2aUwotHnqLKm/lQWK/5VQ==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:43,051 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:43,051 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:18:43,051 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:18:43,051 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:18:43,051 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239923.0515618, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:43,590 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:43,639 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 16:18:43,639 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239923.6391935, 'user': '1'}
+2022-02-07 16:18:43,640 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239923.6391935, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:44,101 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:44,102 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2', '3']}
+2022-02-07 16:18:44,133 - DEBUG    - client - Transport is ready
+2022-02-07 16:18:44,134 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:18:50,406 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:18:53,003 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 16:18:53,004 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 16:18:53,123 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:18:53,178 - INFO     - transport - Connection attempt №1
+2022-02-07 16:18:53,179 - DEBUG    - transport - Connection established.
+2022-02-07 16:18:53,179 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:18:53,185 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 16:18:53,186 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 16:18:53,187 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644239933.1868544, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:53,705 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:53,706 - DEBUG    - transport - Server response: {'response': 511, 'bin': 'fbbbb50839ddb600a284616b5cd7d8cbd55e5465944ef1124b8598d1e926f4fdcafea38f2baa59c2f1e515d040e6b4afae4c8513f3641e8e8a25a3934e24dad5'}
+2022-02-07 16:18:53,708 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': '98u4KCJQeFuYxm++4AK4wg==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:53,710 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:53,713 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:18:53,714 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:18:53,714 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 16:18:53,716 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644239933.7143688, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:54,252 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:54,274 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 16:18:54,274 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644239934.2748768, 'user': '2'}
+2022-02-07 16:18:54,275 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644239934.2748768, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:18:54,769 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1592, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61515), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:18:54,769 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['1', '3']}
+2022-02-07 16:18:54,848 - DEBUG    - client - Transport is ready
+2022-02-07 16:18:54,906 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:19:11,859 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '1', 'to': '2', 'time': 1644239951.859183, 'message_text': '2'}
+2022-02-07 16:19:11,860 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '1', 'to': '2', 'time': 1644239951.859183, 'message_text': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:19:12,086 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:19:12,086 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:19:12,086 - INFO     - transport - Sent message to user 2
+2022-02-07 16:19:12,090 - DEBUG    - main_window - Отправлено сообщение для 2: 2
+2022-02-07 16:19:29,915 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '2', 'to': '1', 'time': 1644239969.9159195, 'message_text': '1'}
+2022-02-07 16:20:25,088 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1360, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61499), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1644240025.0887294, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:20:25,088 - DEBUG    - transport - Transport shuts down.
+2022-02-07 16:20:25,597 - DEBUG    - transport - Lost connection to server.
+2022-02-07 16:20:51,967 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:20:55,611 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:20:55,611 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:20:55,674 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:20:55,695 - INFO     - transport - Connection attempt №1
+2022-02-07 16:20:55,696 - DEBUG    - transport - Connection established.
+2022-02-07 16:20:55,696 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:20:55,703 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:20:55,703 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:20:55,703 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644240055.703194, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:20:56,208 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:20:56,208 - DEBUG    - transport - Server response: {'response': 511, 'bin': '654ae32c31b22607a540b458e81cec767df9bd61b812a3d95f648cf99fbf82aa7402927bff00b35d97c2976cd0dc46187b2bbd15c0bfb3d36ee1821932b4202e'}
+2022-02-07 16:20:56,208 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'fJIUBfxX+Se2KwVgKNDkuQ==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:20:56,209 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:20:56,209 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:20:56,209 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:20:56,209 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:20:56,209 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644240056.209888, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:20:56,740 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:20:56,770 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 16:20:56,770 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644240056.770768, 'user': '1'}
+2022-02-07 16:20:56,770 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644240056.770768, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:20:57,252 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1324, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61597), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:20:57,252 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2', '3']}
+2022-02-07 16:20:57,286 - DEBUG    - client - Transport is ready
+2022-02-07 16:20:57,286 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:21:04,185 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:21:07,899 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 16:21:07,899 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 16:21:08,020 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:21:08,056 - INFO     - transport - Connection attempt №1
+2022-02-07 16:21:08,067 - DEBUG    - transport - Connection established.
+2022-02-07 16:21:08,067 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:21:08,082 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 16:21:08,083 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 16:21:08,084 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644240068.0836184, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:21:08,581 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:21:08,582 - DEBUG    - transport - Server response: {'response': 511, 'bin': '25430c655d44cec52d2e0816a54b714c671d899092ec31894ccfd3ec18fc2ff1fadb2659875aed08c1aa2d037cb46ee2e3988d99184d3963a7b90f55e87e0efd'}
+2022-02-07 16:21:08,585 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'Hx5ukH43spnz1Kr1ssrcxw==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:21:08,588 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:21:08,591 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:21:08,592 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:21:08,592 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 16:21:08,594 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644240068.59265, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:21:09,126 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:21:09,139 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 16:21:09,139 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644240069.1390886, 'user': '2'}
+2022-02-07 16:21:09,140 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644240069.1390886, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:21:09,637 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:21:09,637 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['1', '3']}
+2022-02-07 16:21:09,671 - DEBUG    - client - Transport is ready
+2022-02-07 16:21:09,725 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:21:53,707 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '2', 'to': '1', 'time': 1644240113.707857, 'message_text': '1'}
+2022-02-07 16:22:17,701 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '2', 'to': '1', 'time': 1644240113.707857, 'message_text': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:23:32,178 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1544, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61615), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:23:34,831 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:23:42,105 - INFO     - transport - Sent message to user 1
+2022-02-07 16:23:57,320 - DEBUG    - main_window - Отправлено сообщение для 1: 1
+2022-02-07 16:26:17,211 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:26:20,875 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:26:20,875 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:26:20,937 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:26:20,978 - INFO     - transport - Connection attempt №1
+2022-02-07 16:26:20,979 - DEBUG    - transport - Connection established.
+2022-02-07 16:26:20,979 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:26:20,985 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:26:20,986 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:26:20,986 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61738), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644240380.9866264, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:21,506 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61738), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:21,506 - DEBUG    - transport - Server response: {'response': 511, 'bin': '7f2e3590e61a746326b1b3debd77ed81d471d12e8f91172595a960ab01bb5a9110c1d71b344f74bc3c7e904772840b243ed4b0a21048a888160281843038eb40'}
+2022-02-07 16:26:21,507 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61738), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'y0Ek6prJgFm9tPpxNcBDbA==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:21,508 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61738), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:21,508 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:26:21,508 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:26:21,508 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:26:21,509 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1320, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61738), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644240381.5084999, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:23,722 - CRITICAL - transport - Lost connection to server
+2022-02-07 16:26:35,594 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:26:38,610 - DEBUG    - client - Using USERNAME: 1, PASSWD: 1.
+2022-02-07 16:26:38,610 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 1
+2022-02-07 16:26:38,679 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:26:38,903 - INFO     - transport - Connection attempt №1
+2022-02-07 16:26:38,905 - DEBUG    - transport - Connection established.
+2022-02-07 16:26:38,905 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:26:38,918 - DEBUG    - transport - Passwd hash ready: b'758977972c2129fa6aca20015c1e4d945ec4d046f24150572d0b8ab916266e34d622ead385743d3a56bcb4f53b993b407512c00a069f2e2f21e12931a9b49972'
+2022-02-07 16:26:38,918 - DEBUG    - transport - Message-presence by user 1
+2022-02-07 16:26:38,919 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644240398.9185064, 'user': {'name_account': '1', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmyk7Fm8eEyMxNz3ydzm+\nt8aXjdlHAsABkoKtssUbxA2piC7HxHyJS1shFV6IM7/ZTTJ/63FQOozhj0EQ9iol\nnO/L2n2KhotWidcgMLpgKb+KEFOEPygQxciTNyJfjYb4tt0s5v54ra7IOqDH6R4C\npt/WrtdsiABO0Jk1JioPdM5U1wh5u2/nXoDYOxwJDPiXCtTvIlaJc8ISBVBCx8eN\ngORrmWCUMpeU7m/+j7Rckm3ovQWX0ypgZt/+/B29WPQHJ0Il3P+Jj5MFiiHr7vLi\ninepYzzTPkOsOL1tLJUfAlHZ6lIxnIb5rPorWxqkCODIXjfilptGpaSlAZXeUPD/\nTQIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:39,421 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:39,421 - DEBUG    - transport - Server response: {'response': 511, 'bin': '07e6fb1b3e96e6e451655940007122b59cc51d5c1430a3ca102b225e4cc345779135edcd7440ad2da8dba81367a2a262f3489f066103298d84b36387efc37c13'}
+2022-02-07 16:26:39,421 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'gKrU8krSAc1V7Rdl+ldVjQ==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:39,422 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:39,422 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:26:39,422 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:26:39,422 - DEBUG    - transport - Request a list of all known users 1
+2022-02-07 16:26:39,422 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644240399.4229817, 'name_account': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:39,944 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:39,987 - DEBUG    - transport - Request a contact list for a user 1
+2022-02-07 16:26:39,988 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644240399.9882662, 'user': '1'}
+2022-02-07 16:26:39,988 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644240399.9882662, 'user': '1'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:40,448 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:40,448 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['2', '3']}
+2022-02-07 16:26:40,476 - DEBUG    - client - Transport is ready
+2022-02-07 16:26:40,477 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:26:46,635 - DEBUG    - transport - Create a contact 2
+2022-02-07 16:26:46,636 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'delete', 'time': 1644240406.6351733, 'user': '1', 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:47,100 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:47,100 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:26:47,109 - INFO     - main_window - Успешно удалён контакт 2
+2022-02-07 16:26:51,979 - DEBUG    - transport - Create a contact 3
+2022-02-07 16:26:51,979 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'delete', 'time': 1644240411.9790633, 'user': '1', 'name_account': '3'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:52,200 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:52,200 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:26:52,209 - INFO     - main_window - Успешно удалён контакт 3
+2022-02-07 16:26:58,074 - DEBUG    - transport - Create a contact 2
+2022-02-07 16:26:58,074 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'add', 'time': 1644240418.0748181, 'user': '1', 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:26:58,306 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:26:58,306 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:26:58,310 - INFO     - main_window - Успешно добавлен контакт <PyQt5.QtGui.QStandardItem object at 0x0000022C826A9430>
+2022-02-07 16:27:08,977 - DEBUG    - decos - Вызов функции cmd_arg_parse из модуля __main__. Эта функция вызвана с параметрами (), {}. Функция cmd_arg_parse вызывается из функции main() 
+2022-02-07 16:27:13,323 - DEBUG    - client - Using USERNAME: 2, PASSWD: 2.
+2022-02-07 16:27:13,323 - INFO     - client - Started client with parameters: server address: 127.0.0.1, port: 7777, username: 2
+2022-02-07 16:27:13,456 - DEBUG    - client - Keys successfully loaded.
+2022-02-07 16:27:13,494 - INFO     - transport - Connection attempt №1
+2022-02-07 16:27:13,504 - DEBUG    - transport - Connection established.
+2022-02-07 16:27:13,504 - DEBUG    - transport - Starting auth dialog.
+2022-02-07 16:27:13,510 - DEBUG    - transport - Passwd hash ready: b'50a848bc9cd49efb4c010cc16e7dbac7e8635b68262a8f8e6fb9fcca0a63c7208811afd8eb068f12a98d366c99de7c5207adb1078a1789b0c8dd765f5db0a1af'
+2022-02-07 16:27:13,511 - DEBUG    - transport - Message-presence by user 2
+2022-02-07 16:27:13,512 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1644240433.511841, 'user': {'name_account': '2', 'pubkey': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cHqdHF60m0LgqTENaVR\nQTRDzjApR4yciYNthwbw+bTknEwjpW0+9AQYw8FLzrCvq94bbUiPkStr1J+mtuAv\na6/vUoEofIO5njAnBNVxqevMXcO/Ck932NH3nIZQkxpV+5YIg0tYGKlbJjW+1JkS\nblm6NFNOiFvRUkaoSNhATB/oU95dKXslJFHSLaSJ5b/gUQK+y9rsGbqrjtT5mJvT\nWVw8yRANbgy/nqKLslB5/7O+MngJSLUgB3yF7PMirFrNJq4e+QJdP5GEhF2P4BFd\nBh9YsMWozxL5u9FeZmDsNeTm+hdJnOKHjWtEeLbX2V6c9kfo3D55B3mNT5dI7PYL\nxwIDAQAB\n-----END PUBLIC KEY-----'}}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:27:14,012 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:27:14,013 - DEBUG    - transport - Server response: {'response': 511, 'bin': '8ba478d383362704a3542dc6b1e7cf1a1c1f0b1d049fb8891724b5980463deb0d5e6da8e3b049869f9864ae2128c83c146265aa00d754c55c890eaeec0e48393'}
+2022-02-07 16:27:14,014 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': '3V/a6MoFF2dxkXNqrKIE6A==\n'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:27:14,015 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:27:14,016 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:27:14,016 - INFO     - transport - Server connection successfully established.
+2022-02-07 16:27:14,016 - DEBUG    - transport - Request a list of all known users 2
+2022-02-07 16:27:14,016 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1644240434.0162485, 'name_account': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:27:14,539 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:27:14,575 - DEBUG    - transport - Request a contact list for a user 2
+2022-02-07 16:27:14,575 - DEBUG    - transport - Request generated {'action': 'get_contacts', 'time': 1644240434.5758915, 'user': '2'}
+2022-02-07 16:27:14,576 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>, {'action': 'get_contacts', 'time': 1644240434.5758915, 'user': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:27:15,057 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1532, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61830), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:27:15,057 - DEBUG    - transport - Answer received {'response': 202, 'data_list': ['1', '3']}
+2022-02-07 16:27:15,111 - DEBUG    - client - Transport is ready
+2022-02-07 16:27:15,166 - DEBUG    - transport - The process that receives messages from the server is running.
+2022-02-07 16:27:26,162 - DEBUG    - transport - The message dictionary is generated: {'action': 'message', 'from': '1', 'to': '2', 'time': 1644240446.1623669, 'message_text': '2'}
+2022-02-07 16:27:26,163 - DEBUG    - decos - Вызов функции send_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'from': '1', 'to': '2', 'time': 1644240446.1623669, 'message_text': '2'}), {}. Функция send_msg вызывается из функции main() 
+2022-02-07 16:27:26,283 - DEBUG    - decos - Вызов функции recieve_msg из модуля common.utils. Эта функция вызвана с параметрами (<socket.socket fd=1336, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61803), raddr=('127.0.0.1', 7777)>,), {}. Функция recieve_msg вызывается из функции main() 
+2022-02-07 16:27:26,283 - DEBUG    - transport - Parsing a message from the server {'response': 200, 'data_list': None}
+2022-02-07 16:27:26,283 - INFO     - transport - Sent message to user 2
+2022-02-07 16:27:26,291 - DEBUG    - main_window - Отправлено сообщение для 2: 2
+2022-02-07 16:27:53,355 - DEBUG    - transport - Create a contact 1
