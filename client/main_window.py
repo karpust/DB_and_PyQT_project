@@ -1,5 +1,5 @@
+import json
 import sys
-import logging
 
 from common.errors import *
 from client.add_contact import AddContactDialog
@@ -9,6 +9,10 @@ from client.main_window_conv_from_ui import Ui_MainClientWindow
 from PyQt5.QtWidgets import QMainWindow, qApp, QMessageBox, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
 from PyQt5.QtCore import pyqtSlot, Qt
+import base64
+from Cryptodome.Cipher import PKCS1_OAEP
+from Cryptodome.PublicKey import RSA
+from common.variables import *
 
 sys.path.append('../')
 
@@ -16,9 +20,11 @@ sys.path.append('../')
 logger = logging.getLogger('client')
 
 
-# класс основного окна:
 class ClientMainWindow(QMainWindow):
-    def __init__(self, database, transport):
+    """
+    класс основного окна
+    """
+    def __init__(self, database, transport, keys):
         super().__init__()
         self.database = database
         self.transport = transport
@@ -26,6 +32,9 @@ class ClientMainWindow(QMainWindow):
         # загрузка конфигурации окна из QT designer:
         self.ui = Ui_MainClientWindow()
         self.ui.setupUi(self)
+
+        # объект - дешифорвщик сообщений с предзагруженным ключём
+        self.decrypter = PKCS1_OAEP.new(keys)
 
         # кнопка выхода:
         self.ui.menu_exit.triggered.connect(qApp.exit)
@@ -48,6 +57,8 @@ class ClientMainWindow(QMainWindow):
         self.current_chat = None
         self.ui.list_messages.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.ui.list_messages.setWordWrap(True)
+        self.current_chat_key = None
+        self.encryptor = None
 
         # даблклик по листу контактов, отправление в обработчик:
         self.ui.list_contacts.doubleClicked.connect(self.select_active_user)
@@ -59,8 +70,8 @@ class ClientMainWindow(QMainWindow):
         """
         деактивирует поля вывода
         """
-        self.ui.label_new_message.setText('Для выбора получателя дважды кликните '
-                                          'по нему в окне контактов')
+        self.ui.label_new_message.setText(
+            'To select a recipient, double-click on it in the contact list window')
         self.ui.text_message.clear()
         if self.history_model:
             self.history_model.clear()
@@ -93,14 +104,14 @@ class ClientMainWindow(QMainWindow):
         for i in range(start_index, length):
             item = list[i]
             if item[1] == 'in':
-                mess = QStandardItem(f'Входящее от {item[3].replace(microsecond=0)}'
+                mess = QStandardItem(f'Incoming from {item[3].replace(microsecond=0)}'
                                      f'\n {item[2]}')
                 mess.setEditable(False)
                 mess.setBackground(QBrush(QColor(255, 213, 213)))
                 mess.setTextAlignment(Qt.AlignLeft)
                 self.history_model.appendRow(mess)
             else:
-                mess = QStandardItem(f'Исходящее от {item[3].replace(microsecond=0)}'
+                mess = QStandardItem(f'Outgoing from {item[3].replace(microsecond=0)}'
                                      f':\n {item[2]}')
                 mess.setEditable(False)
                 mess.setTextAlignment(Qt.AlignRight)
@@ -122,14 +133,35 @@ class ClientMainWindow(QMainWindow):
         """
         устанавливает активного собеседника
         """
-        # Ставим надпись и активируем кнопки
-        self.ui.label_new_message.setText(f'Введите сообщенние для '
+        # request the user's public key,
+        # and create an encryption object:
+        try:
+            self.current_chat_key = self.transport.key_request(
+                self.current_chat)
+            logger.debug(f'Uploaded public key for {self.current_chat}')
+            if self.current_chat_key:
+                self.encryptor = PKCS1_OAEP.new(
+                    RSA.import_key(self.current_chat_key))
+        except (OSError, json.JSONDecodeError):
+            self.current_chat_key = None
+            self.encryptor = None
+            logger.debug(f'Failed to get key for {self.current_chat}')
+
+        # if there is no key, then error that failed to start chat with user:
+        if not self.current_chat_key:
+            self.messages.warning(
+                self, 'Error', 'There is no encryption key for selected user'
+            )
+            return
+
+        # put the inscription and activate the buttons:
+        self.ui.label_new_message.setText(f'Enter a message for '
                                           f'{self.current_chat}:')
         self.ui.btn_clear.setDisabled(False)
         self.ui.btn_send.setDisabled(False)
         self.ui.text_message.setDisabled(False)
 
-        # Заполняем окно историю сообщений по требуемому пользователю.
+        # fill the message history window for the required user:
         self.history_list_update()
 
     def clients_list_update(self):
@@ -150,7 +182,8 @@ class ClientMainWindow(QMainWindow):
         """
         global select_dialog
         select_dialog = AddContactDialog(self.transport, self.database)
-        select_dialog.btn_ok.clicked.connect(lambda: self.add_contact_action(select_dialog))
+        select_dialog.btn_ok.clicked.connect(
+            lambda: self.add_contact_action(select_dialog))
         select_dialog.show()
 
     def add_contact_action(self, item):
@@ -169,19 +202,19 @@ class ClientMainWindow(QMainWindow):
         try:
             self.transport.add_contact(new_contact)
         except ServerError as err:
-            self.messages.critical(self, 'Ошибка сервера', err.text)
+            self.messages.critical(self, 'Server error', err.text)
         except OSError as err:
             if err.errno:
-                self.messages.critical(self, 'Ошибка', 'Потеряно соединение с сервером!')
+                self.messages.critical(self, 'Error', 'Lost connection to server!')
                 self.close()
-            self.messages.critical(self, 'Ошибка', 'Таймаут соединения!')
+            self.messages.critical(self, 'Error', 'Connection timeout!')
         else:
             self.database.add_contact(new_contact)
             new_contact = QStandardItem(new_contact)
             new_contact.setEditable(False)
             self.contacts_model.appendRow(new_contact)
-            logger.info(f'Успешно добавлен контакт {new_contact}')
-            self.messages.information(self, 'Успех', 'Контакт успешно добавлен.')
+            logger.info(f'Successfully added contact {new_contact}')
+            self.messages.information(self, 'Added', 'Contact added successfully.')
 
     def delete_contact_window(self):
         """
@@ -189,7 +222,8 @@ class ClientMainWindow(QMainWindow):
         """
         global remove_dialog
         remove_dialog = DelContactDialog(self.database)
-        remove_dialog.btn_ok.clicked.connect(lambda: self.delete_contact(remove_dialog))
+        remove_dialog.btn_ok.clicked.connect(
+            lambda: self.delete_contact(remove_dialog))
         remove_dialog.show()
 
     def delete_contact(self, item):
@@ -201,17 +235,17 @@ class ClientMainWindow(QMainWindow):
         try:
             self.transport.delete_contact(selected)
         except ServerError as err:
-            self.messages.critical(self, 'Ошибка сервера', err.text)
+            self.messages.critical(self, 'Server error', err.text)
         except OSError as err:
             if err.errno:
-                self.messages.critical(self, 'Ошибка', 'Потеряно соединение с сервером!')
+                self.messages.critical(self, 'Error', 'Lost connection to server!')
                 self.close()
-            self.messages.critical(self, 'Ошибка', 'Таймаут соединения!')
+            self.messages.critical(self, 'Error', 'Connection timeout!')
         else:
             self.database.del_contact(selected)
             self.clients_list_update()
-            logger.info(f'Успешно удалён контакт {selected}')
-            self.messages.information(self, 'Успех', 'Контакт успешно удалён.')
+            logger.info(f'Successfully deleted contact {selected}')
+            self.messages.information(self, 'Deleted', 'Contact successfully removed.')
             item.close()
             # Если удалён активный пользователь, то деактивируем поля ввода.
             if selected == self.current_chat:
@@ -222,39 +256,60 @@ class ClientMainWindow(QMainWindow):
         """
         отправляет сообщение пользователю
         """
-        # текст в поле, проверка, что поле не пустое,
-        # затем забирается сообщение и поле очищается:
+        # check that field is not empty, pick up message, clear field:
         message_text = self.ui.text_message.toPlainText()
         self.ui.text_message.clear()
         if not message_text:
             return
+        # encrypt message by recipient's key and pack it in base64:
+        message_text_encrypted = self.encryptor.encrypt(
+            message_text.encode('utf8'))
+        message_text_encrypted_base64 = base64.b64encode(
+            message_text_encrypted)
         try:
-            self.transport.send_message(self.current_chat, message_text)
+            self.transport.send_message(
+                self.current_chat,
+                message_text_encrypted_base64.decode('ascii'))
             pass
         except ServerError as err:
-            self.messages.critical(self, 'Ошибка', err.text)
+            self.messages.critical(self, 'Error', err.text)
         except OSError as err:
             if err.errno:
-                self.messages.critical(self, 'Ошибка',
-                                       'Потеряно соединение с сервером!')
+                self.messages.critical(
+                    self, 'Error', 'Lost connection to server!')
                 self.close()
-            self.messages.critical(self, 'Ошибка', 'Таймаут соединения')
+            self.messages.critical(self, 'Error', 'Connection timeout')
         except (ConnectionResetError, ConnectionAbortedError):
-            self.messages.critical(self, 'Ошибка',
-                                   'Потеряно соединение с сервером!')
+            self.messages.critical(
+                self, 'Error', 'Lost connection to server!')
             self.close()
         else:
             self.database.save_message(self.current_chat, 'out', message_text)
-            logger.debug(f'Отправлено сообщение для {self.current_chat}: '
-                         f'{message_text}')
+            logger.debug(
+                f'Sent message to {self.current_chat}: {message_text}')
             self.history_list_update()
 
     # слот приёма новых сообщений:
-    @pyqtSlot(str)
-    def message(self, sender):
+    @pyqtSlot(dict)
+    def message(self, message):
         """
         приём новых сообщений
         """
+        # get bytes string:
+        encrypted_message = base64.b64encode(message[MESSAGE_TEXT])
+        # decode the string, print the message on error and exit:
+        try:
+            decrypted_message = self.decrypter.decrypt(encrypted_message)
+        except (ValueError, TypeError):
+            self.messages.warning(
+                self, 'Error', 'Failed to decode message')
+            return
+        # save message to database, update message history
+        # or open new chat:
+        self.database.save_message(
+            self.current_chat, 'in', decrypted_message.decode('utf8'))
+        sender = message[SENDER]
+
         if sender == self.current_chat:
             self.history_list_update()
         else:
@@ -262,26 +317,32 @@ class ClientMainWindow(QMainWindow):
             if self.database.check_contact(sender):
                 # Если есть, спрашиваем о желании открыть с ним чат
                 # и открываем при желании:
-                if self.messages.question(self, 'Новое сообщение',
-                                          f'Получено новое сообщение от {sender}, открыть чат с ним?',
-                                          QMessageBox.Yes,
-                                          QMessageBox.No) == QMessageBox.Yes:
+                if self.messages.question(
+                        self, 'New message',
+                        f'Received a new message from {sender}, '
+                        f'open a chat with him?',
+                        QMessageBox.Yes,
+                        QMessageBox.No) == QMessageBox.Yes:
                     self.current_chat = sender
                     self.set_active_user()
             else:
                 print('NO')
-                # Раз нет, спрашиваем хотим ли добавить юзера в контакты.
-                if self.messages.question(self, 'Новое сообщение',
-                                          f'Получено новое сообщение от '
-                                          f'{sender}.\n '
-                                          f'Данного пользователя нет в вашем '
-                                          f'контакт-листе.\n'
-                                          f' Добавить в контакты и открыть чат '
-                                          f'с ним?',
-                                          QMessageBox.Yes,
-                                          QMessageBox.No) == QMessageBox.Yes:
+                # ask if want to add user to contacts:
+                if self.messages.question(
+                        self, 'New message ',
+                        f'Received a new message from {sender}.\n '
+                        f'This user is not on your contact list.\n'
+                        f'Add to contacts and open a chat '
+                        f'with him?',
+                        QMessageBox.Yes,
+                        QMessageBox.No) == QMessageBox.Yes:
                     self.add_contact(sender)
                     self.current_chat = sender
+                    # re-save the message, otherwise it will be lost,
+                    # because there was no contact at the previous call
+                    self.database.save_message(
+                        self.current_chat, 'in', decrypted_message.decode('utf8')
+                    )
                     self.set_active_user()
 
     # слот потери соединения:
@@ -290,9 +351,23 @@ class ClientMainWindow(QMainWindow):
         """
         выдаёт сообщение об ошибке и завершает работу приложения
         """
-        self.messages.warning(self, 'Сбой соединения',
-                              'Потеряно соединение с сервером. ')
+        self.messages.warning(self, 'Connection failure',
+                              'Lost connection to server. ')
         self.close()
+
+    @pyqtSlot()
+    def sig_205(self):
+        """
+        slot that performs databases updates
+        at the command of the server
+        """
+        if self.current_chat and not self.database.check_user(
+                self.current_chat):
+            self.messages.warning(
+                self, 'Sorry', 'The contact was deleted from server.')
+            self.set_disabled_input()
+            self.current_chat = None
+        self.ckients_list_update()
 
     def make_connection(self, trans_obj):
         """
@@ -300,6 +375,7 @@ class ClientMainWindow(QMainWindow):
         """
         trans_obj.new_message.connect(self.message)
         trans_obj.lost_connection.connect(self.connection_lost)
+        trans_obj.message_205.connect(self.sig_205)
 
 
 if __name__ == '__main__':
@@ -307,8 +383,8 @@ if __name__ == '__main__':
     from database import ClientDb
     database = ClientDb('client1')
     from transport import ClientTransport
-    transport = ClientTransport(7777, '127.0.0.1', database, 'test1')
-    window = ClientMainWindow(database, transport)
+    transport = ClientTransport(7777, '127.0.0.1', database, 'test1', 1, 15)
+    window = ClientMainWindow(database, transport, 15)
     sys.exit(app.exec_())
 
 

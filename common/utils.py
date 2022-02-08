@@ -21,7 +21,7 @@ def send_msg(socket_to, msg_dict):
 
 
 @log
-def recieve_msg(socket_from):
+def receive_msg(socket_from):
     """
     принимает байты
     декодирует

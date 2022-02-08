@@ -4,7 +4,7 @@ import os
 from common.variables import *
 import logging
 import json
-from common.utils import recieve_msg, send_msg
+from common.utils import receive_msg, send_msg
 import socket
 from descriptors import Port
 from threading import Thread
@@ -87,7 +87,7 @@ class ServSock(Thread):
             if recv_data_lst:
                 for client_with_msg in recv_data_lst:
                     try:
-                        self.check_msg(recieve_msg(client_with_msg),
+                        self.check_msg(receive_msg(client_with_msg),
                                        client_with_msg)
                     except (OSError, json.JSONDecodeError, TypeError) as err:
                         logger.debug(f'Client exception', exc_info=err)
@@ -271,7 +271,7 @@ class ServSock(Thread):
             logger.debug(f'Auth message: {message_auth}')
             try:
                 send_msg(client, message_auth)
-                ans = recieve_msg(client)
+                ans = receive_msg(client)
             except OSError as err:
                 logger.debug('Error in authorisation, data: ', exc_info=err)
                 client.close()

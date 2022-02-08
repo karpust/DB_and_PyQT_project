@@ -97,7 +97,7 @@ def main():
         del start_dialog
 
         # создаем GUI:
-        main_window = ClientMainWindow(database, transport)
+        main_window = ClientMainWindow(database, transport, keys)
         main_window.make_connection(transport)
         main_window.setWindowTitle(f'User - {client_name}')
         client_app.exec_()

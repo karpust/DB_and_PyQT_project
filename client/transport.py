@@ -17,10 +17,9 @@ socket_lock = Lock()
 # класс transport отвечает за взаимодействие с сервером:
 class ClientTransport(Thread, QObject):
     # сигналы: новое сообщение и потеря соединения:
-    new_message = pyqtSignal(str)
+    new_message = pyqtSignal(dict)
     lost_connection = pyqtSignal()
     message_205 = pyqtSignal()
-
 
     def __init__(self, port, ip_address, database, username, passwd, keys):
         Thread.__init__(self)
@@ -93,7 +92,7 @@ class ClientTransport(Thread, QObject):
         with socket_lock:
             try:
                 send_msg(self.transport, self.presence_msg(pubkey))
-                ans = recieve_msg(self.transport)
+                ans = receive_msg(self.transport)
                 logger.debug(f'Server response: {ans}')
                 if ans[RESPONSE] == 400:
                     raise ServerError(ans[ERROR])
@@ -105,7 +104,7 @@ class ClientTransport(Thread, QObject):
                     my_ans = RESPONSE_511
                     my_ans[DATA] = binascii.b2a_base64(digest).decode('ascii')
                     send_msg(self.transport, my_ans)
-                    self.check_server_msg(recieve_msg(self.transport))
+                    self.check_server_msg(receive_msg(self.transport))
             except (OSError, json.JSONDecodeError) as err:
                 logger.debug(f'Connection error.', exc_info=err)
                 raise ServerError(f'Connection failure during authorization process.')
@@ -170,7 +169,7 @@ class ClientTransport(Thread, QObject):
         logger.debug(f'Request generated {req}')
         with socket_lock:
             send_msg(self.transport, req)
-            ans = recieve_msg(self.transport)
+            ans = receive_msg(self.transport)
         logger.debug(f'Answer received {ans}')
         if RESPONSE in ans and ans[RESPONSE] == 202:
             for contact in ans[LIST_INFO]:
@@ -191,11 +190,29 @@ class ClientTransport(Thread, QObject):
         # освобождаем сокет:
         with socket_lock:
             send_msg(self.transport, req)
-            ans = recieve_msg(self.transport)
+            ans = receive_msg(self.transport)
         if RESPONSE in ans and ans[RESPONSE] == 202:
             self.database.add_users(ans[LIST_INFO])
         else:
             logger.error('Failed to update list of known users.')
+
+    def key_request(self, user):
+        """
+        requesting user's public key from server
+        """
+        logger.debug(f'Request public key for {user}')
+        req = {
+            ACTION: PUBLIC_KEY_REQUEST,
+            TIME: time.time(),
+            ACCOUNT_NAME: user
+        }
+        with socket_lock:
+            send_msg(self.transport, req)
+            ans = receive_msg(self.transport)
+        if RESPONSE in ans and ans[RESPONSE] == 511:
+            return ans[DATA]
+        else:
+            logger.error(f'Failed to get public key by {user}.')
 
     def add_contact(self, contact):
         """
@@ -211,7 +228,7 @@ class ClientTransport(Thread, QObject):
         # освобождаем сокет:
         with socket_lock:
             send_msg(self.transport, req)
-            self.check_server_msg(recieve_msg(self.transport))
+            self.check_server_msg(receive_msg(self.transport))
 
     def delete_contact(self, contact):
         """
@@ -227,7 +244,7 @@ class ClientTransport(Thread, QObject):
         # освобождаем сокет:
         with socket_lock:
             send_msg(self.transport, req)
-        self.check_server_msg(recieve_msg(self.transport))
+        self.check_server_msg(receive_msg(self.transport))
 
     def transport_shutdown(self):
         """
@@ -261,7 +278,7 @@ class ClientTransport(Thread, QObject):
         # освобождаем сокет:
         with socket_lock:
             send_msg(self.transport, msg_dict)
-            self.check_server_msg(recieve_msg(self.transport))
+            self.check_server_msg(receive_msg(self.transport))
             logger.info(f'Sent message to user {to}')
 
     def run(self):
@@ -273,7 +290,7 @@ class ClientTransport(Thread, QObject):
             with socket_lock:
                 try:
                     self.transport.settimeout(0.5)
-                    message = recieve_msg(self.transport)
+                    message = receive_msg(self.transport)
                 except OSError as err:
                     if err.errno:
                         logger.critical(f'Lost connection to server.')
